@@ -1,0 +1,42 @@
+#container_conf {
+  margin: 80px auto;
+  width: 500px;
+}
+
+body {
+  font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
+  color: #404040;
+  background: #4f89a2;
+}
+
+#panel_conf {
+	position: relative;
+	margin: 0 auto;
+	padding: 20px 20px 20px;
+	width: 500px;
+	background: white;
+	border-radius: 3px;
+	}
+	
+.lab {
+	width: 120px;
+	font-weight: bold; 
+	display:inline-block;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+select {
+	width: 150px;
+	display:inline-block;
+}
+
+#maxNumber {
+	width: 150px;
+	display:inline-block;
+}
+
+#maxMOS {
+	width: 150px;
+	display:inline-block;
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+  <meta charset ="UTF-8">
+  <meta http-equive ="X-UA-Compatible" content "IE=edge">
+  <meta name ="viewpoert" content="width = device-width, initial-scale=1.0">
+  <title> Document </title>
+
+  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+</head>
+<body>
+<div id="myNum" style="background: red;"></div>
+<py-script>
+import asyncio
+
+for x in range (1,10):
+    element = document.getElementById('myNum')
+    element.innerHTML = x
+    await asyncio.sleep(1)
+
+</py-script>
+</body>
+</html>

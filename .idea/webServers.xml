@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="715f4571-b15a-49df-8f57-4218331c34a2" name="pbz.kt.agh.edu.pl" url="http://pbz.kt.agh.edu.pl/~testySubiektywne/PIQMOS/">
+        <fileTransfer rootFolder="/home/testySubiektywne" accessType="SFTP" host="pbz.kt.agh.edu.pl" port="3322" sshConfigId="46436bda-2a23-4af6-8950-7a2cf6200243" sshConfig="testySubiektywne@pbz.kt.agh.edu.pl:3322 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
