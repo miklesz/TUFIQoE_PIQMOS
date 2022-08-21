@@ -32,14 +32,15 @@
 		
 
 	</script>
-	</script>
 
 <body onload="checkMos()">
 	<div class="answer">
 		<?php 
-//		session_start();
+		session_start();
         $mes = 'Assess quality of material displayed';
         $button = 'Next';
+        $pre_time = microtime(true);
+        $pvs_duration = microtime(true) - $_SESSION['pvs_time']
         ?>
 		
 <!--		if(isset($_SESSION['lan'])){-->
@@ -59,9 +60,14 @@
 <!--			-->
 <!--		?>-->
 		<h3><?php echo $mes; ?></h3>
+<!--        --><?php
+//        echo $_SESSION['pre_time'];
+//        ?>
 		<!--p style=" margin-top: 5px; margin-bottom: 2px; ">Rating</p-->
 		<form method="post" action="next_page.php" style = "margin-bottom: 0;">
             <input id="pageNext" type="hidden" name="page" value="mos">
+            <input id="pre_time" type="hidden" name="pre_time" value="<?php echo $pre_time; ?>">
+            <input id="pvs_duration" type="hidden" name="pvs_duration" value="<?php echo $pvs_duration; ?>">
             <label>
                 <input type="radio" name="mos" onClick="checkMos();" value="1"> bad<br><br>
             </label>
@@ -77,7 +83,7 @@
             <label>
                 <input type="radio" name="mos" onClick="checkMos();" value="5"> excellent<br><br>
             </label>
-            <input id="nextButton" type="submit" value="Next" disabled=true>
+            <input id="nextButton" type="submit" value="Next" disabled>
 <!--            --><?php
 //            exit('Exit: testMOS');
 //            ?>
@@ -113,7 +119,7 @@
 //						break;
 //					case 2:
 //						if($lan == 'pl') {
-//							$mos_mes = "slaba";
+//							$mos_mes = "słaba";
 //						}
 //						else {
 //							$mos_mes = "poor";
