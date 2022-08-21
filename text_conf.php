@@ -48,7 +48,10 @@ else {
 	if(file_exists('results/'.$id_user.'.csv')){
 		echo 'Warning: User already exists!<br>';
 	}
-    file_put_contents('results/'.$id_user.'.csv', 'key,value'.PHP_EOL);
+    file_put_contents(
+        'results/'.$id_user.'.csv',
+        'pvs,pvs_duration,question,answer,correct,mos,arousal,valence,approach_avoidance,quest_duration'.PHP_EOL
+    );
 //    $src = array("Volvo", "BMW", "Toyota");
     $src = file('config/src.txt');
     print_r($src);
