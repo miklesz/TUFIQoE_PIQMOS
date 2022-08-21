@@ -9,7 +9,7 @@
     $(window).load(function() {
         window.setTimeout(function(){
             window.location.href = "testItemN.php";
-            }, 8000);
+            }, 3000);
     });
     // jQuery(document).ready(function($) {
     //     if (window.history && window.history.pushState) {
@@ -19,7 +19,6 @@
     //         });
     //     }
     // });
-</script>
 </script>
 <body>
 <section class="container">
