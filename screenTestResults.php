@@ -133,13 +133,25 @@ if(isset($_SESSION['id_user'])) {
   echo 'screen='.$screen.'<br>';
   echo 'browser='.$browser.'<br>';
 
-  file_put_contents('results/'.$id_user.'.csv', 'id_user,'.$id_user.PHP_EOL, FILE_APPEND | LOCK_EX);
-  file_put_contents('results/'.$id_user.'.csv', 'test_date,'.$test_date.PHP_EOL, FILE_APPEND | LOCK_EX);
-  file_put_contents('results/'.$id_user.'.csv', 'max_white,'.$max_white.PHP_EOL, FILE_APPEND | LOCK_EX);
-  file_put_contents('results/'.$id_user.'.csv', 'min_black,'.$min_black.PHP_EOL, FILE_APPEND | LOCK_EX);
-  file_put_contents('results/'.$id_user.'.csv', 'reliability,'.$reliability.PHP_EOL, FILE_APPEND | LOCK_EX);
-  file_put_contents('results/'.$id_user.'.csv', 'screen,'.$screen.PHP_EOL, FILE_APPEND | LOCK_EX);
-  file_put_contents('results/'.$id_user.'.csv', 'browser,'.$browser.PHP_EOL, FILE_APPEND | LOCK_EX);
+//  file_put_contents('results/'.$id_user.'.csv', 'id_user,'.$id_user.PHP_EOL, FILE_APPEND | LOCK_EX);
+//  file_put_contents('results/'.$id_user.'.csv', 'test_date,'.$test_date.PHP_EOL, FILE_APPEND | LOCK_EX);
+//  file_put_contents('results/'.$id_user.'.csv', 'max_white,'.$max_white.PHP_EOL, FILE_APPEND | LOCK_EX);
+//  file_put_contents('results/'.$id_user.'.csv', 'min_black,'.$min_black.PHP_EOL, FILE_APPEND | LOCK_EX);
+//  file_put_contents('results/'.$id_user.'.csv', 'reliability,'.$reliability.PHP_EOL, FILE_APPEND | LOCK_EX);
+//  file_put_contents('results/'.$id_user.'.csv', 'screen,'.$screen.PHP_EOL, FILE_APPEND | LOCK_EX);
+//  file_put_contents('results/'.$id_user.'.csv', 'browser,'.$browser.PHP_EOL, FILE_APPEND | LOCK_EX);
+
+  file_put_contents(
+      'results/'.$id_user.'_screen.csv',
+      'id_user,test_date,max_white,min_black,reliability,screen,browser'.PHP_EOL,
+      FILE_APPEND | LOCK_EX
+  );
+  file_put_contents(
+      'results/'.$id_user.'_screen.csv',
+      $id_user.','.$test_date.','.$max_white.','.$min_black.','.$reliability.','.$screen.','.$browser.PHP_EOL,
+      FILE_APPEND | LOCK_EX
+  );
+
 
 //  $dbhandle = connectToDB();
 //  $query = mysql_query("INSERT INTO `SCREEN`(`ID_USER`, `TEST_DATE`, `MAX_WHITE`, `MIN_BLACK`, `RELIABILITY`, `SCREEN`, `BROWSER` ) VALUES ((SELECT ID FROM `USER` WHERE NUMBER = ('$id_user')), NOW(),('$max_white'),('$min_black'),('$reliability'),('$screen'),('$browser'))");
