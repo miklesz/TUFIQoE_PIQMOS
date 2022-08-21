@@ -12,6 +12,8 @@ $mos = $_POST['mos'];
 $pvs = $_SESSION['pvs'];
 $pvs_no = $_SESSION['pvs_no'];
 $current_pvs = $pvs[$pvs_no];
+$quest_duration = microtime(true) - $_POST['pre_time'];
+$pvs_duration = $_POST['pvs_duration'];
 
 //print_r($_SESSION);
 //echo '<br>';
@@ -20,7 +22,11 @@ $current_pvs = $pvs[$pvs_no];
 //echo 'current_pvs='.$current_pvs.'<br>';
 //echo 'mos='.$mos.'<br>';
 
-file_put_contents('results/'.$id_user.'.csv', $current_pvs.','.$mos.PHP_EOL, FILE_APPEND | LOCK_EX);
+file_put_contents(
+    'results/'.$id_user.'.csv',
+    $current_pvs.','.$pvs_duration.',,,,'.$mos.',,,,'.$quest_duration.PHP_EOL,
+    FILE_APPEND | LOCK_EX
+);
 
 $_SESSION['pvs_no'] += 1;
 $pvs_no = $_SESSION['pvs_no'];
@@ -130,5 +136,5 @@ else{
 //else
 //{
 //	exit('TODO remove that - ERR');
-//	echo "brak mosu";
+//	echo "no mos";
 //}
