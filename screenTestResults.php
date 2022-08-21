@@ -6,13 +6,13 @@ ini_set('display_startup_errors', '1');
 
 session_start();
 
-// DEBUG: uncoment to test this separately
+// DEBUG: uncomment to test this separately
 //if(!isset($_SESSION['id_user']))
 //  $_SESSION['id_user'] = 100;
 
 
 
-function logdebug($txt) {
+function log_debug($txt) {
   // Uncomment for debugging
   //echo "$txt\n";
 }
@@ -20,8 +20,7 @@ function logdebug($txt) {
 function normalize_cheat_score($c) {
   // Normalize score and apply non-linear fitting
   $normScore =  $c / 2;
-  $perc = round( 100 * ( -0.5 * ( tanh($normScore - 3) - 1 ) ) );
-  return $perc;
+  return round( 100 * ( -0.5 * ( tanh($normScore - 3) - 1 ) ) );
 }
 
 if(isset($_SESSION['id_user'])) {
@@ -52,15 +51,15 @@ if(isset($_SESSION['id_user'])) {
   // Check black stars
   if($numStars > 0) {
     if($maxStar - $minStar != $numStars - 1) {
-      logdebug("Numbers in stars array are not consecutive or 0");
+      log_debug("Numbers in stars array are not consecutive or 0");
       $cheat += 1;
     }
     if($minStar != 1) {
-      logdebug("Low visible star selected, but not selected more visible one");
+      log_debug("Low visible star selected, but not selected more visible one");
       $cheat += 2;
     }
     if($maxStar == 8) {
-      logdebug("Invisible star selected");
+      log_debug("Invisible star selected");
       $cheat += 3;
     }
   }
@@ -73,25 +72,25 @@ if(isset($_SESSION['id_user'])) {
   // Smallest vs highest
   if($smallest != "none") {
     if($highest == "none") {
-      logdebug("Either one answer is 'none' and the other isn't");
+      log_debug("Either one answer is 'none' and the other isn't");
       $cheat += 3;
     }
     else if($highest < $smallest) {
-      logdebug("Highest visible number is smaller then the Smallest");
+      log_debug("Highest visible number is smaller then the Smallest");
       $cheat += 1;
     }
     if($smallest < 1 || $smallest > 7) {
-      logdebug("Smallest number not in < 1;7 > interval");
+      log_debug("Smallest number not in < 1;7 > interval");
       $cheat += 3;
     }
   }
   if($highest != "none") {
     if($smallest == "none") {
-      logdebug("Either one answer is 'none' and the other isn't");
+      log_debug("Either one answer is 'none' and the other isn't");
       $cheat += 3;
     }
     if($highest < 1 || $highest > 7) {
-      logdebug("Highest number not in < 1;7 > interval");
+      log_debug("Highest number not in < 1;7 > interval");
       $cheat += 3;
     }
   }
@@ -103,16 +102,16 @@ if(isset($_SESSION['id_user'])) {
 
   // focus
   if($focusTime < 6000) {
-    logdebug("Time on page lower than 6 seconds");
+    log_debug("Time on page lower than 6 seconds");
     $cheat += 1;
   }
   // Clicking on dark area to find stars
   if($clickNo > 3) {
-    logdebug("More than 3 clicks");
+    log_debug("More than 3 clicks");
     $cheat += 3;
   }
   else if($clickNo > 1) {
-    logdebug("More than 1 click");
+    log_debug("More than 1 click");
     $cheat += 1;
   }
 
@@ -165,4 +164,4 @@ else {
 }
 
 
-?>
+
