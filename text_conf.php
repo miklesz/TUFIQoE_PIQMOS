@@ -52,8 +52,8 @@ else {
         'results/'.$id_user.'.csv',
         'pvs,pvs_duration,question,answer,correct,mos,arousal,valence,approach_avoidance,quest_duration'.PHP_EOL
     );
-//    $src = array("Volvo", "BMW", "Toyota");
-    $src = file('config/src.txt');
+    $src = file('config/src.csv');
+    array_shift($src);
     print_r($src);
     echo '<br>';
     shuffle($src);
@@ -65,15 +65,29 @@ else {
     $ext = file_get_contents('config/ext.txt');
     echo $ext.'<br>';
     $pvs = array();
-    foreach ($src as $current_src){
+    $quest_correct = array();
+    foreach ($src as $src_line){
+        $needle = strpos($src_line, ',');
+        if ($needle) {
+            $current_src = substr($src_line, 0, $needle);
+            $current_quest_correct = substr($src_line, $needle+1);
+        } else {
+            $current_src = $src_line;
+            $current_quest_correct = '';
+        }
         $current_hrc_key = array_rand($hrc);
         $current_pvs = trim($current_src).'_'.trim($hrc[$current_hrc_key]).'.'.trim($ext);
         $pvs[] = $current_pvs;
-//        echo $current_pvs.'<br>';
+        $quest_correct[] = $current_quest_correct;
+        echo "src_line = $src_line, current_src = $current_src, current_pvs = $current_pvs, current_quest_correct = $current_quest_correct<br>";
     }
     print_r($pvs);
     echo '<br>';
+    print_r($quest_correct);
+    echo '<br>';
+//    exit();
     $_SESSION['pvs'] =  $pvs;
+    $_SESSION['quest_correct'] =  $quest_correct;
 //    exit('Randomisation exit');
     header( "Location: testStart.php" );
 //	exit('Exit: Trap.');
