@@ -42,23 +42,6 @@
         $pre_time = microtime(true);
         $pvs_duration = microtime(true) - $_SESSION['pvs_time']
         ?>
-		
-<!--		if(isset($_SESSION['lan'])){-->
-<!--			$lan = $_SESSION['lan'];-->
-<!--			if($lan == 'pl'){-->
-<!--				$mes = 'Oceń jakość przedstawionego materiału';-->
-<!--				$button = 'Dalej';-->
-<!--			}-->
-<!--			else {-->
-<!--				$mes = 'Assess quality of material displayed';-->
-<!--				$button = 'Next';-->
-<!--			}		-->
-<!--		}-->
-<!--		else {-->
-<!--			header( "Location: ../TUFIQoEMOS/index.php" );-->
-<!--		}-->
-<!--			-->
-<!--		?>-->
 		<h3><?php echo $mes; ?></h3>
 <!--        --><?php
 //        echo $_SESSION['pre_time'];
