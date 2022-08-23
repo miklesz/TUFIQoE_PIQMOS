@@ -86,8 +86,8 @@ else {
     print_r($quest_correct);
     echo '<br>';
 //    exit();
-    $_SESSION['pvs'] =  $pvs;
-    $_SESSION['quest_correct'] =  $quest_correct;
+    $_SESSION['pvs'] = $pvs;
+    $_SESSION['quest_correct'] = $quest_correct;
 //    exit('Randomisation exit');
     header( "Location: testStart.php" );
 //	exit('Exit: Trap.');
