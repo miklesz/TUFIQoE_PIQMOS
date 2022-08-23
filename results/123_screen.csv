@@ -1,0 +1,4 @@
+id_user,test_date,max_white,min_black,reliability,screen,browser
+123,2022-08-23 23:15:25,247,41,73,2560x1440,Safari 15.6 on Mac
+id_user,test_date,max_white,min_black,reliability,screen,browser
+123,2022-08-23 23:22:02,247,13,27,2560x1440,Safari 15.6 on Mac

@@ -1,0 +1,7 @@
+pvs,pvs_duration,question,answer,correct,mos,arousal,valence,approach_avoidance,quest_duration
+Landscapes_003_v_C.jpg,0.86512994766235,,,,1,,,,2.1006979942322
+Animals_146_h_D.jpg,0.82772994041443,,,,1,,,,6.9315898418427
+Animals_202_h_C.jpg,687.03215694427,,,,1,,,,1013.1616029739
+Animals_202_h_C.jpg,687.03215694427,,,,1,,,,1163.3123121262
+Animals_202_h_C.jpg,687.03215694427,Is it sunny?,,,1,,,,1186.9157650471
+Animals_202_h_C.jpg,687.03215694427,Is it sunny?,true,,1,,,,1263.5650241375
