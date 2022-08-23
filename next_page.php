@@ -14,8 +14,13 @@ $pvs_no = $_SESSION['pvs_no'];
 $current_pvs = $pvs[$pvs_no];
 $quest_duration = microtime(true) - $_POST['pre_time'];
 $pvs_duration = $_POST['pvs_duration'];
+$quest_correct = $_SESSION['quest_correct'];
+$quest = substr($quest_correct[$pvs_no], 0, strpos($quest_correct[$pvs_no], ','));
+$answer = $_POST['quest'];
 
-//print_r($_SESSION);
+print_r($_SESSION);
+echo '<br>';
+print_r($_POST);
 //echo '<br>';
 //echo 'id_user='.$id_user.'<br>';
 //echo 'pvs_no='.$pvs_no.'<br>';
@@ -24,9 +29,10 @@ $pvs_duration = $_POST['pvs_duration'];
 
 file_put_contents(
     'results/'.$id_user.'.csv',
-    $current_pvs.','.$pvs_duration.',,,,'.$mos.',,,,'.$quest_duration.PHP_EOL,
+    "$current_pvs,$pvs_duration,$quest,$answer,,$mos,,,,$quest_duration".PHP_EOL,
     FILE_APPEND | LOCK_EX
 );
+exit();
 
 $_SESSION['pvs_no'] += 1;
 $pvs_no = $_SESSION['pvs_no'];
