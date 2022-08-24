@@ -1,6 +1,6 @@
-src,quest,correct
-Animals_146_h,Are you sure?,true
-Animals_202_h,Is it sunny?,false
-Landscapes_001_h
-Landscapes_003_v
-Landscapes_013_v
+src,quest,correct,eval
+Animals_146_h,Are you sure?,true,mos
+Animals_202_h,Is it sunny?,false,random
+Landscapes_001_h,,,arousal
+Landscapes_003_v,,,arousal;valence
+Landscapes_013_v,,,approach/avoidance
