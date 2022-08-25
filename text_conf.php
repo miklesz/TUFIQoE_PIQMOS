@@ -50,7 +50,7 @@ else {
 	}
     file_put_contents(
         'results/'.$id_user.'.csv',
-        'pvs,pvs_duration,question,answer,correct,mos,arousal,valence,approach_avoidance,quest_duration'.PHP_EOL
+        'pvs,pvs_duration,question,answer,correct,mos,arousal,valence,approach_avoidance,quest_duration,timestamp'.PHP_EOL
     );
     $src_table = file('config/src.csv');
     array_shift($src_table);
@@ -72,35 +72,27 @@ else {
         $src_row_array = explode(',', $src_row);
         print_r($src_row_array);
         echo '<br>';
-//        $needle = strpos($src_row, ',');
-//        if ($needle) {
-//            $current_src = substr($src_row, 0, $needle);
-//            $current_quest_correct = substr($src_row, $needle+1);
-//        } else {
-//            $current_src = $src_row;
-//            $current_quest_correct = '';
-//        }
-
+        $quest_array[] = $src_row_array[1];
+        $correct_array[] = $src_row_array[2];
+        $eval_array[] = $src_row_array[3];
         $current_hrc_key = array_rand($hrc);
         $current_pvs = trim($src_row_array[0]).'_'.trim($hrc[$current_hrc_key]).'.'.trim($ext);
         $pvs_array[] = $current_pvs;
-//        $quest_correct[] = $current_quest_correct;
 //        echo "src_line = $src_row, current_src = $current_src, current_pvs = $current_pvs, current_quest_correct = $current_quest_correct<br>";
     }
-    exit();
     print_r($pvs_array);
     echo '<br>';
-    print_r($quest_correct);
+    print_r($quest_array);
     echo '<br>';
-    print_r($quest_correct);
+    print_r($correct_array);
     echo '<br>';
-    print_r($quest_correct);
+    print_r($eval_array);
     echo '<br>';
-//    exit();
     $_SESSION['pvs_array'] = $pvs_array;
     $_SESSION['quest_array'] = $quest_array;
     $_SESSION['correct_array'] = $correct_array;
     $_SESSION['eval_array'] = $eval_array;
+//    exit();
 //    exit('Randomisation exit');
     header( "Location: testStart.php" );
 //	exit('Exit: Trap.');
