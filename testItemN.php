@@ -50,14 +50,14 @@
             ini_set('display_errors', '1');
             ini_set('display_startup_errors', '1');
             session_start();
-            $pvs = $_SESSION['pvs'];
+            $pvs_array = $_SESSION['pvs_array'];
 //            print_r($pvs);
 //            echo '<br>';
             $pvs_no = $_SESSION['pvs_no'];
 //            echo 'pvs_no='.$pvs_no.'<br>';
             $id_user = $_SESSION['id_user'];
 //            echo 'id_user='.$id_user.'<br>';
-            echo '<a href="testMOS.php"><img src="Data/'.$pvs[$pvs_no].'" alt=""></a>';
+            echo '<a href="testMOS.php"><img src="Data/'.$pvs_array[$pvs_no].'" alt=""></a>';
             $_SESSION['pvs_time'] = microtime(true);
             ?>
 		</div>
