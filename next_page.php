@@ -9,37 +9,46 @@ session_start();
 
 $id_user = 	$_SESSION['id_user'];
 $mos = $_POST['mos'];
-$pvs = $_SESSION['pvs'];
+$pvs_array = $_SESSION['pvs_array'];
+$quest_array = $_SESSION['quest_array'];
+$correct_array = $_SESSION['correct_array'];
+$eval_array = $_SESSION['eval_array'];
 $pvs_no = $_SESSION['pvs_no'];
-$current_pvs = $pvs[$pvs_no];
+$current_pvs = $pvs_array[$pvs_no];
 $quest_duration = microtime(true) - $_POST['pre_time'];
 $pvs_duration = $_POST['pvs_duration'];
-$quest_correct = $_SESSION['quest_correct'];
-$quest = substr($quest_correct[$pvs_no], 0, strpos($quest_correct[$pvs_no], ','));
-$answer = $_POST['quest'];
+$quest = $quest_array[$pvs_no];
+$correct = $correct_array[$pvs_no];
+if (array_key_exists("answer", $_POST)) {
+    $answer = $_POST['answer'];
+} else {
+    $answer = NULL;
+}
 
 print_r($_SESSION);
 echo '<br>';
 print_r($_POST);
+echo '<br>';
 //echo '<br>';
 //echo 'id_user='.$id_user.'<br>';
 //echo 'pvs_no='.$pvs_no.'<br>';
 //echo 'current_pvs='.$current_pvs.'<br>';
 //echo 'mos='.$mos.'<br>';
+$timestamp = date('r', time());
 
 file_put_contents(
     'results/'.$id_user.'.csv',
-    "$current_pvs,$pvs_duration,$quest,$answer,,$mos,,,,$quest_duration".PHP_EOL,
+    "$current_pvs,$pvs_duration,$quest,$answer,$correct,$mos,,,,$quest_duration,$timestamp".PHP_EOL,
     FILE_APPEND | LOCK_EX
 );
-exit();
+//exit();
 
 $_SESSION['pvs_no'] += 1;
 $pvs_no = $_SESSION['pvs_no'];
 //echo 'pvs_no='.$pvs_no.'<br>';
 //echo count($pvs).'<br>';
 
-if($pvs_no==count($pvs)) {
+if($pvs_no==count($pvs_array)) {
 	header( "Location: testEnd.php" );
 }
 else{
