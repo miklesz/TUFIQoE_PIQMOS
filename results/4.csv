@@ -1,6 +1,2 @@
 pvs,pvs_duration,question,answer,correct,mos,arousal,valence,approach_avoidance,quest_duration
-Animals_146_h_E.jpg,,,,,4,,,
-Animals_202_h_E.jpg,,,,,2,,,1661112977.3515
-Landscapes_013_v_B.jpg,,,,,4,,,1661112980.7796
-Landscapes_003_v_D.jpg,,,,,2,,,,2.3118121623993
-Landscapes_001_h_A.jpg,,,,,5,,,,1.8595278263092
+Animals_202_h_A.jpg,1.096764087677,Is it sunny?,true,false,1,,,,3.7441940307617
