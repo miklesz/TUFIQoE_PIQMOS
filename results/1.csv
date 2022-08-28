@@ -1,6 +1,2 @@
-pvs,pvs_duration,question,answer,correct,mos,arousal,valence,approach_avoidance,quest_duration
-Animals_146_h_E.jpg,3.0622839927673,Are you sure?,true,true,1,,,,4.5129449367523
-Landscapes_001_h_B.jpg,3.0521080493927,,,,2,,,,33.756268024445
-Landscapes_003_v_E.jpg,3.0547749996185,,,,1,,,,947.11321306229,Thu, 25 Aug 2022 21:29:14
-Landscapes_013_v_B.jpg,3.078724861145,,,,4,,,,141.63604998589,Thu, 25 Aug 2022 21:31:38 +0000
-Animals_202_h_A.jpg,3.0402212142944,Is it sunny?,false,false,1,,,,303.73949694633,Thu, 25 Aug 2022 21:36:45 +0000 UTC
+pvs,pvs_duration,question,answer,correct,mos,arousal,valence,approach_avoidance,quest_duration,timestamp
+Landscapes_003_v_A.jpg,117.67674708366,,,,1,,,,3.4661600589752,Sun, 28 Aug 2022 21:33:56 +0000
