@@ -51,30 +51,52 @@
             echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='true'> true<br><br></label>";
             echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='false'> false<br><br></label>";
         }
-        $eval = $eval_array[$pvs_no];
+        $eval = trim($eval_array[$pvs_no]);
         $eval_exploded = explode(';', $eval);
-        echo "$eval<br>";
-        print_r("$eval_exploded<br>");
+//        echo "$eval<br>";
+//        print_r($eval_exploded);
 //        print_r("$quest_array<br>");
-        echo '<h3>Assess quality of material displayed</h3>';
+        foreach ($eval_exploded as $eval_item) {
+            echo "'$eval_item'<br>";
+            if ($eval_item == 'mos'){
+                echo '<h3>Assess quality of material displayed</h3>';
+                echo '<input id="pageNext" type="hidden" name="page" value="mos">';
+                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='1'> bad<br><br></label>";
+                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='2'> poor<br><br></label>";
+                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='3'> fair<br><br></label>";
+                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='4'> good<br><br></label>";
+                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='5'> excellent<br><br></label>";
+            }
+            if ($eval_item == 'arousal'){
+                echo '<h3>Assess arousal of material displayed</h3>';
+//                echo '<input id="pageNext" type="hidden" name="page" value="mos">';
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='1'> bad<br><br></label>";
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='2'> poor<br><br></label>";
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='3'> fair<br><br></label>";
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='4'> good<br><br></label>";
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='5'> excellent<br><br></label>";
+            }
+            if ($eval_item == 'valence'){
+                echo '<h3>Assess valence of material displayed</h3>';
+//                echo '<input id="pageNext" type="hidden" name="page" value="mos">';
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='1'> bad<br><br></label>";
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='2'> poor<br><br></label>";
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='3'> fair<br><br></label>";
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='4'> good<br><br></label>";
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='5'> excellent<br><br></label>";
+            }
+            if ($eval_item == 'approach/avoidance'){
+                echo '<h3>Assess approach/avoidance of material displayed</h3>';
+//                echo '<input id="pageNext" type="hidden" name="page" value="mos">';
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='1'> bad<br><br></label>";
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='2'> poor<br><br></label>";
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='3'> fair<br><br></label>";
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='4'> good<br><br></label>";
+//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='5'> excellent<br><br></label>";
+            }
+        }
+        echo '<input id="nextButton" type="submit" value="Next" disabled>';
         ?>
-        <input id="pageNext" type="hidden" name="page" value="mos">
-        <label>
-            <input type="radio" name="mos" onClick="checkMos(<?php echo $buttons; ?>);" value="1"> bad<br><br>
-        </label>
-        <label>
-            <input type="radio" name="mos" onClick="checkMos(<?php echo $buttons; ?>);" value="2"> poor<br><br>
-        </label>
-        <label>
-            <input type="radio" name="mos" onClick="checkMos(<?php echo $buttons; ?>);" value="3"> fair<br><br>
-        </label>
-        <label>
-            <input type="radio" name="mos" onClick="checkMos(<?php echo $buttons; ?>);" value="4"> good<br><br>
-        </label>
-        <label>
-            <input type="radio" name="mos" onClick="checkMos(<?php echo $buttons; ?>);" value="5"> excellent<br><br>
-        </label>
-        <input id="nextButton" type="submit" value="Next" disabled>
     </form>
 </div>
 </body>
