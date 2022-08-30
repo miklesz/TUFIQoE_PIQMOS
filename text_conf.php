@@ -50,7 +50,7 @@ else {
 	}
     file_put_contents(
         'results/'.$id_user.'.csv',
-        'pvs,pvs_duration,question,answer,correct,mos,arousal,valence,approach_avoidance,quest_duration,timestamp'.PHP_EOL
+        'id_user,pvs,pvs_duration,eval_id,eval_item,answer,duration,quest,correct,timestamp'.PHP_EOL
     );
     $src_table = file('config/src.csv');
     array_shift($src_table);
@@ -74,7 +74,11 @@ else {
         echo '<br>';
         $quest_array[] = $src_row_array[1];
         $correct_array[] = $src_row_array[2];
-        $eval_array[] = $src_row_array[3];
+        if ($src_row_array[1]) {
+            $eval_array[] = 'quest:'.$src_row_array[3];
+        } else {
+            $eval_array[] = $src_row_array[3];
+        };
         $current_hrc_key = array_rand($hrc);
         $current_pvs = trim($src_row_array[0]).'_'.trim($hrc[$current_hrc_key]).'.'.trim($ext);
         $pvs_array[] = $current_pvs;
