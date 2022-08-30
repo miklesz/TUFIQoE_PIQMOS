@@ -45,55 +45,72 @@
         $quest = $quest_array[$pvs_no];
         echo "<input id='pre_time' type='hidden' name='pre_time' value='$pre_time'>";
         echo "<input id='pvs_duration' type='hidden' name='pvs_duration' value='$pvs_duration'>";
-        if ($quest){
-            $buttons += 1;
-            echo "<h3>$quest</h3>";
-            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='true'> true<br><br></label>";
-            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='false'> false<br><br></label>";
-        }
         $eval = trim($eval_array[$pvs_no]);
-        $eval_exploded = explode(';', $eval);
+        $eval_exploded = explode(':', $eval);
 //        echo "$eval<br>";
 //        print_r($eval_exploded);
 //        print_r("$quest_array<br>");
-        foreach ($eval_exploded as $eval_item) {
-            echo "'$eval_item'<br>";
-            if ($eval_item == 'mos'){
-                echo '<h3>Assess quality of material displayed</h3>';
-                echo '<input id="pageNext" type="hidden" name="page" value="mos">';
-                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='1'> bad<br><br></label>";
-                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='2'> poor<br><br></label>";
-                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='3'> fair<br><br></label>";
-                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='4'> good<br><br></label>";
-                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='5'> excellent<br><br></label>";
-            }
-            if ($eval_item == 'arousal'){
-                echo '<h3>Assess arousal of material displayed</h3>';
-//                echo '<input id="pageNext" type="hidden" name="page" value="mos">';
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='1'> bad<br><br></label>";
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='2'> poor<br><br></label>";
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='3'> fair<br><br></label>";
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='4'> good<br><br></label>";
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='5'> excellent<br><br></label>";
-            }
-            if ($eval_item == 'valence'){
-                echo '<h3>Assess valence of material displayed</h3>';
-//                echo '<input id="pageNext" type="hidden" name="page" value="mos">';
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='1'> bad<br><br></label>";
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='2'> poor<br><br></label>";
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='3'> fair<br><br></label>";
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='4'> good<br><br></label>";
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='5'> excellent<br><br></label>";
-            }
-            if ($eval_item == 'approach/avoidance'){
-                echo '<h3>Assess approach/avoidance of material displayed</h3>';
-//                echo '<input id="pageNext" type="hidden" name="page" value="mos">';
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='1'> bad<br><br></label>";
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='2'> poor<br><br></label>";
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='3'> fair<br><br></label>";
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='4'> good<br><br></label>";
-//                echo "<label><input type='radio' name='mos' onClick='checkMos($buttons);' value='5'> excellent<br><br></label>";
-            }
+        $eval_id = $_SESSION['eval_id'];
+        $eval_item = $eval_exploded[$eval_id];
+        if ($eval_item == 'random') {
+            $eval_item = array('mos', 'arousal', 'valence', 'approach/avoidance')[rand(0, 3)];
+        }
+        echo "eval_id = $eval_id, eval_item = $eval_item<br>";
+        echo "<input id='pre_time' type='hidden' name='eval_item' value='$eval_item'>";
+        echo "<input id='pre_time' type='hidden' name='eval_id' value='$eval_id'>";
+        if ($eval_item == 'quest'){
+            echo "<h3>$quest</h3>";
+            echo '<input id="pageNext" type="hidden" name="page" value="answer">';
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='true'> true<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='false'> false<br><br></label>";
+        }
+        if ($eval_item == 'mos'){
+            echo '<h3>Assess quality of material displayed</h3>';
+            echo '<input id="pageNext" type="hidden" name="page" value="answer">';
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='1'> bad<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='2'> poor<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='3'> fair<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='4'> good<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='5'> excellent<br><br></label>";
+        }
+        if ($eval_item == 'arousal'){
+            echo '<h3>Assess arousal of material displayed</h3>';
+            echo '<input id="pageNext" type="hidden" name="page" value="answer">';
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='1'> 1<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='2'> 2<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='3'> 3<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='4'> 4<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='5'> 5<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='6'> 6<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='7'> 7<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='8'> 8<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='9'> 9<br><br></label>";
+        }
+        if ($eval_item == 'valence'){
+            echo '<h3>Assess valence of material displayed</h3>';
+            echo '<input id="pageNext" type="hidden" name="page" value="answer">';
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='1'> 1<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='2'> 2<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='3'> 3<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='4'> 4<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='5'> 5<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='6'> 6<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='7'> 7<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='8'> 8<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='9'> 9<br><br></label>";
+        }
+        if ($eval_item == 'approach/avoidance'){
+            echo '<h3>Assess approach/avoidance of material displayed</h3>';
+            echo '<input id="pageNext" type="hidden" name="page" value="answer">';
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='1'> 1<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='2'> 2<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='3'> 3<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='4'> 4<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='5'> 5<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='6'> 6<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='7'> 7<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='8'> 8<br><br></label>";
+            echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='9'> 9<br><br></label>";
         }
         echo '<input id="nextButton" type="submit" value="Next" disabled>';
         ?>
