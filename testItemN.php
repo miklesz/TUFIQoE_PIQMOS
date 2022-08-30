@@ -57,8 +57,9 @@
 //            echo 'pvs_no='.$pvs_no.'<br>';
             $id_user = $_SESSION['id_user'];
 //            echo 'id_user='.$id_user.'<br>';
-            echo '<a href="testMOS.php"><img src="Data/'.$pvs_array[$pvs_no].'" alt=""></a>';
             $_SESSION['pvs_time'] = microtime(true);
+            $_SESSION['eval_id'] = 0;
+            echo '<a href="testMOS.php"><img src="Data/'.$pvs_array[$pvs_no].'" alt=""></a>';
             ?>
 		</div>
 	</div>
