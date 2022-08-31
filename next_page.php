@@ -16,6 +16,7 @@ $eval_array = $_SESSION['eval_array'];
 $pvs_no = $_SESSION['pvs_no'];
 $current_pvs = $pvs_array[$pvs_no];
 $quest_duration = microtime(true) - $_POST['pre_time'];
+$quest_duration = $_POST['quest_duration'];
 $pvs_duration = $_POST['pvs_duration'];
 $quest = $quest_array[$pvs_no];
 $correct = $correct_array[$pvs_no];
@@ -31,6 +32,7 @@ print_r($_SESSION);
 echo '<br>';
 print_r($_POST);
 echo '<br>';
+//exit();
 //echo '<br>';
 //echo 'id_user='.$id_user.'<br>';
 //echo 'pvs_no='.$pvs_no.'<br>';
@@ -49,7 +51,7 @@ file_put_contents(
 
 $eval = trim($eval_array[$pvs_no]);
 $eval_exploded = explode(':', $eval);
-$eval_count = count($eval_exploded);
+$eval_count = count($eval_exploded) - 1;
 
 echo("$eval_id<br>");
 echo("$eval_count<br>");
@@ -60,7 +62,7 @@ if ($eval_id < $eval_count) {
     $_SESSION['eval_id'] += 1;
     header( "Location: testMOS.php" );
 }
-exit();
+//exit();
 
 
 $_SESSION['pvs_no'] += 1;
