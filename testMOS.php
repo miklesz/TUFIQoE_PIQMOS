@@ -6,6 +6,8 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript" >
+    const start = Date.now();
+
     function checkMos(buttons) {
         if(atLeastOneRadio(buttons)) {
             document.getElementById("nextButton").disabled = false;
@@ -15,6 +17,16 @@
     function atLeastOneRadio(buttons) {
         return ($('input[type=radio]:checked').size() > buttons);
     }
+
+    function time(){
+        document.getElementById('pvs_duration').value = localStorage.getItem('pvs_duration');
+        document.getElementById('quest_duration').value = (Date.now() - start).toString();
+    }
+
+    setInterval(time,1);
+
+    // a = localStorage.getItem('pvs_duration');
+    // document.getElementById('pvs_duration').value = (Date.now() - start).toString();
 
     // 	jQuery(document).ready(function($) {
     //
@@ -32,6 +44,12 @@
 <body onload="checkMos()">
 <div class="answer">
     <form method="post" action="next_page.php" style = "margin-bottom: 0;">
+        <label for="pvs_duration">
+            <input id="pvs_duration" name="pvs_duration" value="">
+        </label>
+        <label for="quest_duration">
+            <input id="quest_duration" name="quest_duration" value="">
+        </label>
         <?php
         session_start();
         $button = 'Next';
@@ -44,7 +62,7 @@
         $buttons = 0;
         $quest = $quest_array[$pvs_no];
         echo "<input id='pre_time' type='hidden' name='pre_time' value='$pre_time'>";
-        echo "<input id='pvs_duration' type='hidden' name='pvs_duration' value='$pvs_duration'>";
+//        echo "<input id='pvs_duration' type='hidden' name='pvs_duration' value='$pvs_duration'>";
         $eval = trim($eval_array[$pvs_no]);
         $eval_exploded = explode(':', $eval);
 //        echo "$eval<br>";
@@ -55,6 +73,11 @@
         if ($eval_item == 'random') {
             $eval_item = array('mos', 'arousal', 'valence', 'approach/avoidance')[rand(0, 3)];
         }
+        echo '<br>';
+        echo "eval = $eval<br>";
+        echo 'eval_exploded = ';
+        print_r($eval_exploded);
+        echo '<br>';
         echo "eval_id = $eval_id, eval_item = $eval_item<br>";
         echo "<input id='pre_time' type='hidden' name='eval_item' value='$eval_item'>";
         echo "<input id='pre_time' type='hidden' name='eval_id' value='$eval_id'>";
