@@ -6,7 +6,6 @@
 	</head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script type="text/javascript" >
-	
 		function onLanguageChange() {
             const select = document.getElementById("soflow");
             if(select != null){
@@ -27,9 +26,17 @@
 		$(window).load(function() {
 			//$('#soflow').val('pl');
 			$('#soflow').val('eng');
-		});	
-		
-	</script>
+		});
+
+        jQuery(document).ready(function($) {
+            if (window.history && window.history.pushState) {
+                window.history.pushState('forward', null, './#forward');
+                $(window).on('popstate', function() {
+                    window.location.href = "testCut.php";
+                });
+            }
+        });
+    </script>
 <body>
 	  <section class="container">
 		<div class="login">
