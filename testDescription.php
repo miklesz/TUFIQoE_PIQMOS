@@ -11,14 +11,14 @@
             window.location.href = "testItemN.php";
             }, 3000);
     });
-    // jQuery(document).ready(function($) {
-    //     if (window.history && window.history.pushState) {
-    //         window.history.pushState('forward', null, './#forward');
-    //         $(window).on('popstate', function() {
-    //             window.location.href = "testCut.php";
-    //         });
-    //     }
-    // });
+    jQuery(document).ready(function($) {
+        if (window.history && window.history.pushState) {
+            window.history.pushState('forward', null, './#forward');
+            $(window).on('popstate', function() {
+                window.location.href = "testCut.php";
+            });
+        }
+    });
 </script>
 <body>
 <section class="container">
