@@ -1,10 +1,19 @@
 ﻿<html lang="">
-	<head>
-		  <meta charset="iso=8859-2">
-		  <title>TUFIQoE PIQMOS psycho-physical test</title>
-		  <link rel="stylesheet" href="css/style.css" type="text/css"/>
-	</head>
-
+<head>
+    <meta charset="iso=8859-2">
+    <title>TUFIQoE PIQMOS psycho-physical test</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
+</head>
+<script>
+    jQuery(document).ready(function($) {
+        if (window.history && window.history.pushState) {
+            window.history.pushState('forward', null, './#forward');
+            $(window).on('popstate', function() {
+                window.location.href = "testCut.php";
+            });
+        }
+    });
+</script>
 <body>
 	  <section class="container">
 		<div class="login">
