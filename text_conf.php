@@ -78,7 +78,7 @@ else {
             $eval_array[] = 'quest:'.$src_row_array[3];
         } else {
             $eval_array[] = $src_row_array[3];
-        };
+        }
         $current_hrc_key = array_rand($hrc);
         $current_pvs = trim($src_row_array[0]).'_'.trim($hrc[$current_hrc_key]).'.'.trim($ext);
         $pvs_array[] = $current_pvs;
