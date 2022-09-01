@@ -142,8 +142,7 @@ if(isset($_SESSION['id_user'])) {
 
   file_put_contents(
       'results/'.$id_user.'_screen.csv',
-      'id_user,test_date,max_white,min_black,reliability,screen,browser'.PHP_EOL,
-      FILE_APPEND | LOCK_EX
+      'id_user,test_date,max_white,min_black,reliability,screen,browser'.PHP_EOL
   );
   file_put_contents(
       'results/'.$id_user.'_screen.csv',
