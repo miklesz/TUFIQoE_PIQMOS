@@ -28,27 +28,23 @@
     // a = localStorage.getItem('pvs_duration');
     // document.getElementById('pvs_duration').value = (Date.now() - start).toString();
 
-    // 	jQuery(document).ready(function($) {
-    //
-    // if (window.history && window.history.pushState) {
-    //
-    // 	window.history.pushState('forward', null, './#forward');
-    //
-    // 	$(window).on('popstate', function() {
-    // 		window.location.href = "testCut.php";
-    // 	});
-    //
-    // }
-    // });
+    jQuery(document).ready(function($) {
+        if (window.history && window.history.pushState) {
+            window.history.pushState('forward', null, './#forward');
+            $(window).on('popstate', function() {
+                window.location.href = "testCut.php";
+            });
+        }
+    });
 </script>
 <body onload="checkMos()">
 <div class="answer">
     <form method="post" action="next_page.php" style = "margin-bottom: 0;">
         <label for="pvs_duration">
-            <input id="pvs_duration" name="pvs_duration" value="">
+            <input id="pvs_duration" type="hidden" name="pvs_duration" value="">
         </label>
         <label for="quest_duration">
-            <input id="quest_duration" name="quest_duration" value="">
+            <input id="quest_duration" type="hidden" name="quest_duration" value="">
         </label>
         <?php
         session_start();
@@ -73,12 +69,12 @@
         if ($eval_item == 'random') {
             $eval_item = array('mos', 'arousal', 'valence', 'approach/avoidance')[rand(0, 3)];
         }
-        echo '<br>';
-        echo "eval = $eval<br>";
-        echo 'eval_exploded = ';
-        print_r($eval_exploded);
-        echo '<br>';
-        echo "eval_id = $eval_id, eval_item = $eval_item<br>";
+//        echo '<br>';
+//        echo "eval = $eval<br>";
+//        echo 'eval_exploded = ';
+//        print_r($eval_exploded);
+//        echo '<br>';
+//        echo "eval_id = $eval_id, eval_item = $eval_item<br>";
         echo "<input id='pre_time' type='hidden' name='eval_item' value='$eval_item'>";
         echo "<input id='pre_time' type='hidden' name='eval_id' value='$eval_id'>";
         if ($eval_item == 'quest'){
