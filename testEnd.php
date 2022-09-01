@@ -27,36 +27,13 @@ session_start();
 //	}
 //	
 ?>
-	  <section class="container">
-		<div class="login">
-<!--		  <form method="post" action="showResult.php">-->
-<!--		--><?php //
-//		if(isset($_SESSION['lan'])){
-//			$lan = $_SESSION['lan'];
-//			if($lan == 'pl'){
-//				$mes = $_SESSION['comm_pl'];
-//				$button = 'Powrót';
-//			}
-//			else {
-//				$mes = $_SESSION['comm_eng'];
-//				$button = 'Return';
-//			}		
-//		}
-//		else {
-//			header( "Location: ../TUFIQoEMOS/index.php" );
-//		}
-//			
-//		?><!--		  	  -->
-			<h3  id="com" style="margin-bottom: 5px;"> 
-<!--				--><?php //echo $mes;?>
-                The test is done
-			</h3>
-			<!-- <p class="submit"><input type="submit" name="commit" value="Sprawdź wyniki"></p> -->
-<!--		  </form>-->
-		  <form method="post" action="indexReturn.php">
-			<p class="submit"><input type="submit" name="commit" value="Return"></p>
-		  </form>
-		</div>
-	  </section>	  
+<section class="container">
+    <div class="login">
+        <h3 id="com" style="margin-bottom: 5px;">The test is done</h3>
+        <form method="post" action="indexReturn.php">
+            <p class="submit"><input type="submit" name="commit" value="Return"></p>
+        </form>
+    </div>
+</section>
 </body>
 </html>
