@@ -18,14 +18,19 @@ $current_pvs = $pvs_array[$pvs_no];
 $quest_duration = microtime(true) - $_POST['pre_time'];
 $quest_duration = $_POST['quest_duration'];
 $pvs_duration = $_POST['pvs_duration'];
-$quest = $quest_array[$pvs_no];
-$correct = $correct_array[$pvs_no];
 $eval_item = $_POST['eval_item'];
 $eval_id = $_POST['eval_id'];
 if (array_key_exists("answer", $_POST)) {
     $answer = $_POST['answer'];
 } else {
     $answer = NULL;
+}
+if ($eval_item == 'quest') {
+    $quest = $quest_array[$pvs_no];
+    $correct = $correct_array[$pvs_no];
+} else {
+    $quest = '';
+    $correct = '';
 }
 
 print_r($_SESSION);
@@ -48,34 +53,34 @@ file_put_contents(
 );
 //exit();
 
-
 $eval = trim($eval_array[$pvs_no]);
 $eval_exploded = explode(':', $eval);
-$eval_count = count($eval_exploded) - 1;
+$eval_count = count($eval_exploded);
 
-echo("$eval_id<br>");
-echo("$eval_count<br>");
+echo "eval = $eval<br>";
+echo 'eval_exploded = ';
+print_r($eval_exploded);
+echo '<br>';
+echo "eval_id = $eval_id<br>";
+echo "eval_count = $eval_count<br>";
 
-if ($eval_id < $eval_count) {
-    echo("$eval_id < $eval_count<br>");
-//    exit();
+if ($eval_id < $eval_count - 1) {
+    echo("$eval_id < $eval_count - 1<br>");
     $_SESSION['eval_id'] += 1;
     header( "Location: testMOS.php" );
+} else {
+    $_SESSION['pvs_no'] += 1;
+    $pvs_no = $_SESSION['pvs_no'];
+//    echo 'pvs_no='.$pvs_no.'<br>';
+//    echo count($pvs).'<br>';
+    if ($pvs_no==count($pvs_array)) {
+        header( "Location: testEnd.php" );
+    } else{
+        header( "Location: testItemN.php" );
+    }
 }
+
 //exit();
-
-
-$_SESSION['pvs_no'] += 1;
-$pvs_no = $_SESSION['pvs_no'];
-//echo 'pvs_no='.$pvs_no.'<br>';
-//echo count($pvs).'<br>';
-
-if($pvs_no==count($pvs_array)) {
-	header( "Location: testEnd.php" );
-}
-else{
-	header( "Location: testItemN.php" );
-}
 
 //exit('Exit: next_page');
 
