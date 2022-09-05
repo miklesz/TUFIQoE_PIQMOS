@@ -32,24 +32,25 @@
             if (window.history && window.history.pushState) {
                 window.history.pushState('forward', null, './#forward');
                 $(window).on('popstate', function() {
-                    window.location.href = "testCut.php";
+                    // window.location.href = "testCut.php";
+                    window.location.href = "testCut.php?com=The test is interrupted";
                 });
             }
         });
     </script>
 <body>
-	  <section class="container">
-		<div class="login">
-		  <h1 style="	margin-bottom: 5px; margin-top: 5px;"  id="loginCom">Login to the test system</h1>
-		  <form method="post" action="text_conf.php">
-			<p><label for="inputPlaceHolder"></label><input type="number" name="id_user" value="" placeholder="Id number" min="0" id="inputPlaceHolder"></p>
-              <label for="soflow"></label><select name="countries" class="countries" id="soflow" onchange="onLanguageChange()">
-				<option value="eng" data-title="English" name="language">English</option>
-			<!--	<option value="pl"  data-title="Polski" name="language">Polski</option>-->
-			</select>	
-			<p class="submit"><input type="submit" name="commit" value="Login"></p>
-		  </form>
-		</div>
-	  </section>	  
+<section class="container">
+    <div class="login">
+        <h1 style="	margin-bottom: 5px; margin-top: 5px;"  id="loginCom">Login to the test system</h1>
+        <form method="post" action="text_conf.php">
+            <p><label for="inputPlaceHolder"></label><input type="number" name="id_user" value="" placeholder="Id number" min="0" id="inputPlaceHolder"></p>
+            <label for="soflow"></label><select name="countries" class="countries" id="soflow" onchange="onLanguageChange()">
+                <option value="eng" data-title="English" name="language">English</option>
+                <!--	<option value="pl"  data-title="Polski" name="language">Polski</option>-->
+            </select>
+            <p class="submit"><input type="submit" name="commit" value="Login"></p>
+        </form>
+    </div>
+</section>
 </body>
 </html>
