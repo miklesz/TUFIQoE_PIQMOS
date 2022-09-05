@@ -43,7 +43,9 @@ echo '<br>';
 //echo 'pvs_no='.$pvs_no.'<br>';
 //echo 'current_pvs='.$current_pvs.'<br>';
 //echo 'mos='.$mos.'<br>';
-$timestamp = str_replace(',', '', date('r', time()));
+//$timestamp = str_replace(',', '', date('r', time()));
+date_default_timezone_set('Europe/Warsaw');
+$timestamp = date('Y-m-d H:i:s');
 
 //'id_user,pvs,pvs_duration,eval_id,eval_item,answer,duration,quest,correct,timestamp'.PHP_EOL
 file_put_contents(
@@ -74,7 +76,7 @@ if ($eval_id < $eval_count - 1) {
 //    echo 'pvs_no='.$pvs_no.'<br>';
 //    echo count($pvs).'<br>';
     if ($pvs_no==count($pvs_array)) {
-        header( "Location: testEnd.php" );
+        header( "Location: testCut.php?com=The test is done" );
     } else{
         header( "Location: testItemN.php" );
     }
