@@ -15,7 +15,8 @@
         if (window.history && window.history.pushState) {
             window.history.pushState('forward', null, './#forward');
             $(window).on('popstate', function() {
-                window.location.href = "testCut.php";
+                // window.location.href = "testCut.php";
+                window.location.href = "testCut.php?com=The test is interrupted";
             });
         }
     });
