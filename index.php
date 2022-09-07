@@ -42,6 +42,11 @@
 <section class="container">
     <div class="login">
         <h1 style="	margin-bottom: 5px; margin-top: 5px;"  id="loginCom">Login to the test system</h1>
+        <?php
+        echo $_GET['PROLIFIC_PID'].'<br>';
+        echo $_GET['STUDY_ID'].'<br>';
+        echo $_GET['SESSION_ID'].'<br>';
+        ?>
         <form method="post" action="text_conf.php">
             <p><label for="inputPlaceHolder"></label><input type="number" name="id_user" value="" placeholder="Id number" min="0" id="inputPlaceHolder"></p>
             <label for="soflow"></label><select name="countries" class="countries" id="soflow" onchange="onLanguageChange()">
