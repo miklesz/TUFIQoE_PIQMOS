@@ -1,0 +1,50 @@
+<html lang="">
+<head>
+  <meta charset="iso=8859-2">
+  <title>TUFIQoE PIQMOS psycho-physical test</title>
+  <title>TUFIQoE PIQMOS psycho-physical test</title>
+  <link rel="stylesheet" href="css/style_test.css" type="text/css"/>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script type="text/javascript" >
+
+  function time(){
+    // document.getElementById('pvs_duration').innerHTML = (Date.now() - start).toString();
+    localStorage.setItem('pvs_duration', (Date.now() - start).toString());
+    // document.getElementById('pvs_duration').innerHTML = localStorage.getItem('pvs_duration');
+  }
+
+  $(window).load(function() {
+    window.setTimeout(function(){
+      window.location.href = "testMOS.php";
+    }, 30000);
+  });
+
+  const start = Date.now();
+  setInterval(time, 1);
+
+  jQuery(document).ready(function($) {
+    if (window.history && window.history.pushState) {
+      window.history.pushState('forward', null, './#forward');
+      $(window).on('popstate', function() {
+        // localStorage.setItem('com', 'The test is interrupted');
+        // window.location.href = "testCut.php";
+        window.location.href = "testCut.php?com=The test is interrupted";
+      });
+    }
+  });
+</script>
+<body>
+<div style="position: relative; width: 100%; height: 100%;">
+  <div  id="con" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+<!--    <a href="testMOS.php">-->
+<!--      <img src="Data/Landscapes_003_v_A.jpg" alt="">-->
+      <video controls>
+        <source src="Data/video/mov_bbb.mp4" type="video/mp4">
+      </video>
+<!--    </a>-->
+  </div>
+</div>
+</body>
+</html>
