@@ -31,7 +31,7 @@
     </div>
 </section>	
 <?php
-$_SESSION['pvs_no'] = 0;
+$_SESSION['src_id'] = 0;
 if(!isset($_SESSION['pageIndex'])) {
     $_SESSION['pageIndex'] = 1;
 } 
