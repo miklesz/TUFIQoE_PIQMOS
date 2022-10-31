@@ -6,8 +6,6 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript" >
-    const start = Date.now();
-
     function checkMos(buttons) {
         if(atLeastOneRadio(buttons)) {
             document.getElementById("nextButton").disabled = false;
@@ -17,16 +15,6 @@
     function atLeastOneRadio(buttons) {
         return ($('input[type=radio]:checked').size() > buttons);
     }
-
-    function time(){
-        document.getElementById('pvs_duration').value = localStorage.getItem('pvs_duration');
-        document.getElementById('quest_duration').value = (Date.now() - start).toString();
-    }
-
-    setInterval(time,1);
-
-    // a = localStorage.getItem('pvs_duration');
-    // document.getElementById('pvs_duration').value = (Date.now() - start).toString();
 
     jQuery(document).ready(function($) {
         if (window.history && window.history.pushState) {
@@ -43,13 +31,18 @@
 <div class="answer">
     <form method="post" action="next_page.php" style = "margin-bottom: 0;">
         <label for="pvs_duration">
-            <input id="pvs_duration" type="hidden" name="pvs_duration" value="">
+<!--            <input id="pvs_duration" type="hidden" name="pvs_duration" value="">-->
+            <input id="pvs_duration" name="pvs_duration" value="">
         </label>
         <label for="quest_duration">
             <input id="quest_duration" type="hidden" name="quest_duration" value="">
         </label>
         <?php
         session_start();
+        $pvs_duration = microtime(true) - $_SESSION['pvs_time'];
+        echo '$pvs_duration = ';
+        echo microtime(true) - $_SESSION['pvs_start_time'];
+        echo '<br><br>';
         $button = 'Next';
         $pre_time = microtime(true);
         $pvs_duration = microtime(true) - $_SESSION['pvs_time'];
@@ -139,3 +132,14 @@
 </div>
 </body>
 </html>
+<script type="text/javascript" >
+    const start = Date.now();
+
+    function time(){
+        document.getElementById('pvs_duration').value = localStorage.getItem('pvs_duration');
+        document.getElementById('quest_duration').value = (Date.now() - start).toString();
+    }
+
+    setInterval(time,1);
+
+</script>
