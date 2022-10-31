@@ -52,24 +52,33 @@ else {
 
     $order_id = file('config/max_order.txt')[0];
     file_put_contents('config/max_order.txt',$order_id+1);
-    echo 'order_id = ';
+    echo '$order_id = ';
     print_r($order_id);
     echo '<br><br>';
     $_SESSION['order_id'] = $order_id;
 
     $orders = file('config/orders.csv');
-    $srcs = explode(',', $orders[0]);
-    $order = explode(',', $orders[$order_id+1]);
+
+    $srcs = explode(',', substr($orders[0], 0, -1));
+    echo 'substr($orders[0], 0, -1) = "';
+    print_r(substr($orders[0], 0, -1));
+    echo '"<br><br>';
+
+    $order = explode(',', substr($orders[$order_id+1], 0, -1));
+    echo 'substr($orders[$order_id+1], 0, -1) = "';
+    print_r(substr($orders[$order_id+1], 0, -1));
+    echo '"<br><br>';
+
     array_shift($srcs);
     array_shift($order);
     $hrcs = array_combine($srcs, $order);
-    echo 'hrcs = ';
+    echo '$hrcs = ';
     print_r($hrcs);
     echo '<br><br>';
     $_SESSION['hrcs'] = $hrcs;
 
     shuffle($srcs);
-    echo 'srcs = ';
+    echo '$srcs = ';
     print_r($srcs);
     echo '<br><br>';
     $_SESSION['srcs'] = $srcs;
