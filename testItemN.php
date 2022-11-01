@@ -65,7 +65,7 @@
 //        $id_user = $_SESSION['id_user'];
 //            echo 'id_user='.$id_user.'<br>';
 //        $_SESSION['eval_id'] = 0;
-//        echo '<a href="testMOS.php"><img src="Data/'.$pvs_array[$pvs_no].'" alt=""></a>';
+//        echo '<a href="testMOS.php">NEXT</a>';
 
         if (substr($pvs, strrpos($pvs, '.'))=='.mp4'){
             echo '<video autoplay muted>';
@@ -82,10 +82,10 @@
 </html>
 <script type="text/javascript" >
     function time(){
-        // document.getElementById('pvs_duration').innerHTML = (Date.now() - start).toString();
         localStorage.setItem('pvs_duration', (Date.now() - start).toString());
-        // document.getElementById('pvs_duration').innerHTML = localStorage.getItem('pvs_duration');
     }
+
+    setInterval(time, 1);
 
     $(window).load(function() {
         window.setTimeout(function(){
@@ -94,6 +94,25 @@
     });
 
     const start = Date.now();
-    setInterval(time, 1);
+
+    // const beforeUnloadListener = (event) => {
+    //     event.preventDefault();
+    //     return event.returnValue = "Are you sure you want to exit?";
+    //     // localStorage.setItem('pvs_duration', (Date.now() - start).toString());
+    // };
+
+    // const nameInput = document.querySelector("#name");
+
+    // nameInput.addEventListener("input", (event) => {
+    //     if (event.target.value !== "") {
+    //         addEventListener("beforeunload", beforeUnloadListener, {capture: true});
+    //     } else {
+    //         removeEventListener("beforeunload", beforeUnloadListener, {capture: true});
+    //     }
+    // });
+
+    // addEventListener("beforeunload", beforeUnloadListener, {capture: true});
+
+    // http://pbz.kt.agh.edu.pl/~testySubiektywne/PIQMOS/testItemN.php
 </script>
 
