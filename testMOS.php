@@ -30,29 +30,31 @@
 <body onload="checkMos()">
 <div class="answer">
     <form method="post" action="next_page.php" style = "margin-bottom: 0;">
-        <label for="pvs_duration">
+<!--        <label for="pvs_duration">-->
 <!--            <input id="pvs_duration" type="hidden" name="pvs_duration" value="">-->
-            <input id="pvs_duration" name="pvs_duration" value="">
+<!--        </label>-->
+        <label for="mos_duration">
+            <input id="mos_duration" type="hidden" name="mos_duration" value="">
         </label>
-        <label for="quest_duration">
-            <input id="quest_duration" type="hidden" name="quest_duration" value="">
+        <label for="answer_duration">
+            <input id="answer_duration" type="hidden" name="answer_duration" value="">
         </label>
         <?php
         session_start();
-        $pvs_duration = microtime(true) - $_SESSION['pvs_time'];
-        echo '$pvs_duration = ';
-        echo microtime(true) - $_SESSION['pvs_start_time'];
-        echo '<br><br>';
+//        $pvs_duration = microtime(true) - $_SESSION['pvs_time'];
+//        echo '$pvs_duration = ';
+//        echo microtime(true) - $_SESSION['pvs_start_time'];
+//        echo '<br><br>';
         $button = 'Next';
-        $pre_time = microtime(true);
-        $pvs_duration = microtime(true) - $_SESSION['pvs_time'];
+//        $pre_time = microtime(true);
+//        $pvs_duration = microtime(true) - $_SESSION['pvs_time'];
         $quest_array = $_SESSION['quest_array'];
         $correct_array = $_SESSION['correct_array'];
         $eval_array = $_SESSION['eval_array'];
         $pvs_no = $_SESSION['pvs_no'];
         $buttons = 0;
         $quest = $quest_array[$pvs_no];
-        echo "<input id='pre_time' type='hidden' name='pre_time' value='$pre_time'>";
+//        echo "<input id='pre_time' type='hidden' name='pre_time' value='$pre_time'>";
 //        echo "<input id='pvs_duration' type='hidden' name='pvs_duration' value='$pvs_duration'>";
         $eval = trim($eval_array[$pvs_no]);
         $eval_exploded = explode(':', $eval);
@@ -132,14 +134,17 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" >
-    const start = Date.now();
+<script type="text/javascript">
+    // const start = Date.now();
+    // function time(){
+    //     document.getElementById('pvs_duration').value = localStorage.getItem('pvs_duration');
+    //     document.getElementById('quest_duration').value = (Date.now() - start).toString();
+    // }
+    // setInterval(time,1);
 
     function time(){
-        document.getElementById('pvs_duration').value = localStorage.getItem('pvs_duration');
-        document.getElementById('quest_duration').value = (Date.now() - start).toString();
+        localStorage.setItem('duration', (Date.now() - start).toString());
     }
-
-    setInterval(time,1);
-
+    const start = Date.now();
+    setInterval(time, 1);
 </script>
