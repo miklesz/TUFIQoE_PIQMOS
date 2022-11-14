@@ -80,7 +80,7 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" >
+<script type="text/javascript">
     function time(){
         localStorage.setItem('pvs_duration', (Date.now() - start).toString());
     }
@@ -115,4 +115,3 @@
 
     // http://pbz.kt.agh.edu.pl/~testySubiektywne/PIQMOS/testItemN.php
 </script>
-
