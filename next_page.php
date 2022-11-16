@@ -6,6 +6,30 @@ ini_set('display_startup_errors', '1');
 //include 'function.php';
 
 session_start();
+$question = $_SESSION['question'];
+if ($question){
+    $_SESSION['submitted_answer'] = $_POST['answer'];
+    $_SESSION['answer_duration'] = $_POST['duration'];
+} else {
+    $_SESSION['submitted_mos'] = $_POST['answer'];
+    $_SESSION['mos_duration'] = $_POST['duration'];
+    $questions_csv = file('config/questions.csv');
+//    print_r($questions_csv);
+    $question = false;
+    foreach ($questions_csv as $questions_csv_line) {
+        $questions_csv_line_elements = explode(',', $questions_csv_line);
+        print_r($questions_csv_line_elements);
+        echo '<br>';
+    }
+}
+
+echo 'mos = ';
+echo $_POST['answer'];
+echo '<br>';
+echo 'duration = ';
+echo $_POST['duration'];
+
+exit;
 
 $id_user = 	$_SESSION['id_user'];
 $mos = $_POST['answer'];
