@@ -72,7 +72,7 @@
             echo '    <source src="Data/'.$pvs.'" type="video/mp4">';
             echo '</video>';
         }else{
-            echo '<img src="Data/'.$pvs.'" alt="">';
+            echo '<img src="Data/'.$pvs.'" alt="" id="image">';
         }
 //        $_SESSION['pvs_start_time'] = microtime(true);
         ?>
@@ -81,37 +81,17 @@
 </body>
 </html>
 <script type="text/javascript">
-    function time(){
-        localStorage.setItem('pvs_duration', (Date.now() - start).toString());
-    }
+    // $(window).load(function() {
+    //     window.setTimeout(function(){
+    //         window.location.href = "testMOS.php";
+    //     }, 3000);
+    // });
 
-    setInterval(time, 1);
-
-    $(window).load(function() {
+    document.getElementById('image').onload = () => {
         window.setTimeout(function(){
             window.location.href = "testMOS.php";
         }, 3000);
-    });
-
-    const start = Date.now();
-
-    // const beforeUnloadListener = (event) => {
-    //     event.preventDefault();
-    //     return event.returnValue = "Are you sure you want to exit?";
-    //     // localStorage.setItem('pvs_duration', (Date.now() - start).toString());
-    // };
-
-    // const nameInput = document.querySelector("#name");
-
-    // nameInput.addEventListener("input", (event) => {
-    //     if (event.target.value !== "") {
-    //         addEventListener("beforeunload", beforeUnloadListener, {capture: true});
-    //     } else {
-    //         removeEventListener("beforeunload", beforeUnloadListener, {capture: true});
-    //     }
-    // });
-
-    // addEventListener("beforeunload", beforeUnloadListener, {capture: true});
+    }
 
     // http://pbz.kt.agh.edu.pl/~testySubiektywne/PIQMOS/testItemN.php
 </script>
