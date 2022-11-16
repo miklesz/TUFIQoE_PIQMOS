@@ -83,6 +83,9 @@ else {
     echo '<br><br>';
     $_SESSION['srcs'] = $srcs;
 
+    $_SESSION['question'] = false;
+//    $_SESSION['ask_question'] = true;
+
 //    $src_table = file('config/src.csv');
 //    array_shift($src_table);
 //    print_r($src_table);
