@@ -47,7 +47,7 @@ else {
 
     file_put_contents(
         'results/'.$id_user.'.csv',
-        'id_user,order_id,timestamp,src_id_src,hrc,pvs,submitted_mos,mos_duration,question,submitted_answer,real_answer,answer_duration'.PHP_EOL
+        'id_user,order_id,timestamp,src_id,hrc,pvs,submitted_mos,mos_duration,question,submitted_answer,real_answer,answer_duration'.PHP_EOL
     );
 
     $order_id = file('config/max_order.txt')[0];
@@ -83,7 +83,8 @@ else {
     echo '<br><br>';
     $_SESSION['srcs'] = $srcs;
 
-    $_SESSION['question'] = false;
+    $_SESSION['question'] = null;
+    $_SESSION['real_answer'] = null;
 //    $_SESSION['ask_question'] = true;
 
 //    $src_table = file('config/src.csv');
