@@ -36,37 +36,11 @@
         <?php
         session_start();
         $button = 'Next';
-
-
-//        $quest_array = $_SESSION['quest_array'];
-//        $correct_array = $_SESSION['correct_array'];
-//        $eval_array = $_SESSION['eval_array'];
-//        $pvs_no = $_SESSION['pvs_no'];
         $buttons = 0;
-//        $quest = $quest_array[$pvs_no];
-//        echo "<input id='pre_time' type='hidden' name='pre_time' value='$pre_time'>";
-//        echo "<input id='pvs_duration' type='hidden' name='pvs_duration' value='$pvs_duration'>";
-//        $eval = trim($eval_array[$pvs_no]);
-//        $eval_exploded = explode(':', $eval);
-//        echo "$eval<br>";
-//        print_r($eval_exploded);
-//        print_r("$quest_array<br>");
-//        $eval_id = $_SESSION['eval_id'];
-//        $eval_item = $eval_exploded[$eval_id];
-//        if ($eval_item == 'random') {
-//            $eval_item = array('mos', 'arousal', 'valence', 'approach/avoidance')[rand(0, 3)];
-//        }
-//        echo '<br>';
-//        echo "eval = $eval<br>";
-//        echo 'eval_exploded = ';
-//        print_r($eval_exploded);
-//        echo '<br>';
-//        echo "eval_id = $eval_id, eval_item = $eval_item<br>";
         $question = $_SESSION['question'];
-        $quest = 'This is question';
         echo "<input id='question' type='hidden' name='question' value='$question'>";
         if ($question){
-            echo "<h3>$quest</h3>";
+            echo "<h3>$question</h3>";
             echo '<input id="pageNext" type="hidden" name="page" value="answer">';
             echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='true'> true<br><br></label>";
             echo "<label><input type='radio' name='answer' onClick='checkMos($buttons);' value='false'> false<br><br></label>";
