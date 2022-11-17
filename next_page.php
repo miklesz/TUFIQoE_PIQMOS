@@ -6,7 +6,15 @@ ini_set('display_startup_errors', '1');
 //include 'function.php';
 
 session_start();
+
+$ask_question = false;
+$srcs = $_SESSION['srcs'];
+$src_id = $_SESSION['src_id'];
+$src = $srcs[$src_id];
 $question = $_SESSION['question'];
+$real_answer = $_SESSION['real_answer'];
+
+# Saving old and checking if there is a need for a question
 if ($question){
     $_SESSION['submitted_answer'] = $_POST['answer'];
     $_SESSION['answer_duration'] = $_POST['duration'];
@@ -14,20 +22,63 @@ if ($question){
     $_SESSION['submitted_mos'] = $_POST['answer'];
     $_SESSION['mos_duration'] = $_POST['duration'];
     $questions_csv = file('config/questions.csv');
-//    print_r($questions_csv);
-    $question = false;
+    $question = null;
+    $real_answer = null;
     foreach ($questions_csv as $questions_csv_line) {
         $questions_csv_line_elements = explode(',', $questions_csv_line);
-        print_r($questions_csv_line_elements);
-        echo '<br>';
+        $src_candidate = $questions_csv_line_elements[0];
+        if ($src == $src_candidate) {
+            echo $src.' == '.$src_candidate.'<br>';
+            $question = $questions_csv_line_elements[1];
+            $real_answer = $questions_csv_line_elements[2];
+            echo '$question = '.$question.'<br>';
+            echo '$real_answer = '.$real_answer.'<br>';
+        }
     }
+    $_SESSION['question'] = $question;
+    $_SESSION['real_answer'] = $real_answer;
+    $ask_question = true;
 }
 
-echo 'mos = ';
-echo $_POST['answer'];
-echo '<br>';
-echo 'duration = ';
-echo $_POST['duration'];
+# Either come back with question or store to file
+if ($ask_question) {
+//            header("Location: testMOS.php");
+    echo '<a href="testMOS.php">testMOS.php</a>';
+} else {
+    //'id_user,order_id,timestamp,src_id,hrc,pvs,submitted_mos,mos_duration,question,submitted_answer,real_answer,answer_duration'.PHP_EOL
+    $id_user = $_SESSION['id_user'];
+    $order_id = $_SESSION['order_id'];
+    date_default_timezone_set('Europe/Warsaw');
+    $timestamp = date('Y-m-d H:i:s');
+    $hrcs = $_SESSION['hrcs'];
+    $hrc = $hrcs[$src];
+    $submitted_mos = $_SESSION['submitted_mos'];
+    $mos_duration = $_SESSION['mos_duration'];
+    $submitted_answer = $_SESSION['submitted_answer'];
+    $answer_duration = $_SESSION['answer_duration'];
+
+    echo '$id_user = '.$id_user.'<br>';
+    echo '$order_id = '.$order_id.'<br>';
+    echo '$timestamp = '.$timestamp.'<br>';
+    echo '$src_id = '.$src_id.'<br>';
+    echo '$hrc = '.$hrc.'<br>';
+    echo '$submitted_mos = '.$submitted_mos.'<br>';
+    echo '$mos_duration = '.$mos_duration.'<br>';
+    echo '$question = '.$question.'<br>';
+    echo '$submitted_answer = '.$submitted_answer.'<br>';
+    echo '$real_answer = '.$real_answer.'<br>';
+    echo '$answer_duration = '.$answer_duration.'<br>';
+
+    $_SESSION['src_id'] += 1;
+    $src_id = $_SESSION['src_id'];
+    if ($src_id == count($srcs)) {
+//    header("Location: testCut.php?com=The test is done");
+        echo '<a href="testCut.php?com=The test is done">testCut.php?com=The test is done</a>';
+    } else{
+//    header("Location: testItemN.php");
+        echo '<a href="testItemN.php">testItemN.php</a>';
+    }
+}
 
 exit;
 
@@ -47,7 +98,7 @@ $eval_id = $_POST['eval_id'];
 if (array_key_exists("answer", $_POST)) {
     $answer = $_POST['answer'];
 } else {
-    $answer = NULL;
+    $answer = null;
 }
 if ($eval_item == 'quest') {
     $quest = $quest_array[$pvs_no];
@@ -105,104 +156,3 @@ if ($eval_id < $eval_count - 1) {
         header( "Location: testItemN.php" );
     }
 }
-
-//exit();
-
-//exit('Exit: next_page');
-
-////session_destroy();
-//if(isset($_POST['mos']) && isset($_SESSION['id_user']) && isset($_SESSION['testID']) && isset($_SESSION['testNumber']) && isset($_POST['page']) && $_SESSION['activeFile'] != null &&  isset($_SESSION['mosMAX'])) {
-//
-//	$mos = $_POST['mos'];
-//	$pageId = (int) $_POST['page'];
-//
-//	$versionsWithFiles =  json_decode($_SESSION['activeFile'], true);
-//	$idFile = 0;
-//
-//	$id_user = 	$_SESSION['id_user'];
-//	$idTest = $_SESSION['testID'];
-//	$testNumber = $_SESSION['testNumber'];
-//	$maxMOS = $_SESSION['mosMAX'];
-//
-////	// TODO: debug -> to be removed
-////	echo "<pre>";
-////	var_dump($_POST);
-////	var_dump($_SESSION);
-////	exit;
-//
-//	if (isset($_SESSION['currentTestItem'])) {
-//		$currentItem = json_decode($_SESSION['currentTestItem'], true);
-//
-//		if (isset($currentItem['FILE_ID'])) {
-//			$idFile = (int) $currentItem['FILE_ID'];
-//		}
-//
-//		// CLEAN UP SESSION STEP
-//		unset($_SESSION['currentTestItem']);
-//	}
-//
-//	// TODO: debug -> to be removed
-////	echo "<pre>";
-////	var_dump(isset($_SESSION['currentTestItem']));
-////	var_dump($_POST);
-////	var_dump($idFile);
-////	var_dump($_SESSION);
-////	exit;
-//
-//	if($idFile != 0)	{
-//		$dbhandle = connectToDB();
-//		$q_one = mysql_query("SELECT * FROM `RESULTS` WHERE ID_USER = (SELECT ID FROM `USER` WHERE NUMBER = ('$id_user')) AND ID_FILE = ('$idFile') AND ID_TEST = ('$idTest') AND TEST_NUMBER = ('$testNumber')");
-//
-//		mysql_query("START TRANSACTION");
-//		if(mysql_num_rows($q_one) > 0) {
-//
-//			while ($row = mysql_fetch_array($q_one)) {
-//				$IDr = $row{'ID'};
-//				break;
-//			}
-//
-//			$q_three = mysql_query("UPDATE `RESULTS` SET `MOS` = ('$mos'), `TEST_DATE` = NOW() WHERE ID = ('$IDr')");
-//		}
-//		else {
-//			$q_two = mysql_query("INSERT INTO `RESULTS`(`ID_USER`, `TEST_DATE`, `MOS`, `MOS_MAX`,`ID_FILE`, `ID_TEST`, `TEST_NUMBER`) VALUES ((SELECT ID FROM `USER` WHERE NUMBER = ('$id_user')), NOW(),('$mos'),('$maxMOS'),('$idFile'),('$idTest'),('$testNumber'))");
-//		}
-//
-//		if ($q_two or $q_three) {
-//			mysql_query("COMMIT");
-//		} else {
-//			mysql_query("ROLLBACK");
-//		}
-//	}
-//
-//	$versionsWithFiles = json_decode($_SESSION['activeFile'], true);
-//	$maxIndex = count($versionsWithFiles);
-//
-//	$nextPage = 0;
-//	if(($pageId + 1) > $maxIndex) {
-//		// If you want to ask the tester about something, uncomment
-//		// the following line:
-//		// header( "Location: ../TUFIQoEMOS/questionnaire.php" );
-//
-//		// TODO: debug -> to be removed
-////		echo "<pre>";
-////		var_dump(count($versionsWithFiles));
-////		var_dump($nextPage);
-////		var_dump($maxIndex);
-////		exit;
-//
-//		// If you have no questions, go to the last page of the test
-//		header( "Location: ../TUFIQoEMOS/testEnd.php" );
-//		exit;
-//	}
-//	else {
-//		$nextPage = $pageId + 1;
-//	}
-//
-//	$_SESSION['pageIndex'] = $nextPage;
-//	header( "Location: ../TUFIQoEMOS/testItemN.php" );
-//}
-//else
-//{
-//	exit('TODO remove that - ERR');
-//	echo "no mos";
-//}
