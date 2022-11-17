@@ -23,44 +23,26 @@
 <div style="position: relative; width: 100%; height: 100%;">
     <div  id="con" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
         <?php
-//        ini_set('display_errors', '1');
-//        ini_set('display_startup_errors', '1');
+        ini_set('display_errors', '1');
+        ini_set('display_startup_errors', '1');
+
         session_start();
 
         $srcs = $_SESSION['srcs'];
-//        echo '$srcs = ';
-//        print_r($srcs);
-//        echo '<br><br>';
-
         $src_id = $_SESSION['src_id'];
-//        echo '$src_id = ';
-//        print_r($src_id);
-//        echo '<br><br>';
-
         $src = $srcs[$src_id];
-//        echo '$src = ';
-//        print_r($src);
-//        echo '<br><br>';
-
         $hrcs = $_SESSION['hrcs'];
-//        echo '$hrcs = ';
-//        print_r($hrcs);
-//        echo '<br><br>';
-
         $hrc = $hrcs[$src];
-//        echo '$hrc = "';
-//        print_r($hrc);
-//        echo '"<br><br>';
-
         $pos = strrpos($src, '.');
-//        echo '$pos = ';
-//        print_r($pos);
-//        echo '<br><br>';
-
         $pvs = substr($src, 0, $pos).'_'.$hrc.substr($src, $pos);
-//        echo '$pvs = ';
-//        print_r($pvs);
-//        echo '<br><br>';
+
+        echo '$srcs = '.print_r($srcs, true).'<br>';
+        echo '$src_id = '.print_r($src_id, true).'<br>';
+        echo '$src = '.print_r($src, true).'<br>';
+        echo '$hrcs = '.print_r($hrcs, true).'<br>';
+        echo '$hrc = '.print_r($hrc, true).'<br>';
+        echo '$pos = '.print_r($pos, true).'<br>';
+        echo '$pvs = '.print_r($pvs, true).'<br>';
 
 //        $id_user = $_SESSION['id_user'];
 //            echo 'id_user='.$id_user.'<br>';
@@ -69,10 +51,10 @@
 
         if (substr($pvs, strrpos($pvs, '.'))=='.mp4'){
             echo '<video autoplay muted>';
-            echo '    <source src="Data/'.$pvs.'" type="video/mp4">';
+            echo '    <source src="Data/'.$pvs.'" type="video/mp4" id="image">';
             echo '</video>';
         }else{
-            echo '<img src="Data/'.$pvs.'" alt="" id="image">';
+            echo '<img src="Data/'.$pvs.'" alt="" id="image" width="50%">';
         }
 //        $_SESSION['pvs_start_time'] = microtime(true);
         ?>
@@ -81,17 +63,17 @@
 </body>
 </html>
 <script type="text/javascript">
-    // $(window).load(function() {
+    $(window).load(function() {
+        window.setTimeout(function(){
+            window.location.href = "testMOS.php";
+        }, 10000);
+    });
+
+    // document.getElementById('image').onload = () => {
     //     window.setTimeout(function(){
     //         window.location.href = "testMOS.php";
     //     }, 3000);
-    // });
-
-    document.getElementById('image').onload = () => {
-        window.setTimeout(function(){
-            window.location.href = "testMOS.php";
-        }, 3000);
-    }
+    // }
 
     // http://pbz.kt.agh.edu.pl/~testySubiektywne/PIQMOS/testItemN.php
 </script>
