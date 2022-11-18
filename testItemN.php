@@ -35,26 +35,29 @@
         $hrc = $hrcs[$src];
         $pos = strrpos($src, '.');
         $pvs = substr($src, 0, $pos).'_'.$hrc.substr($src, $pos);
+        $experiment = $_SESSION['experiment'];
+//
+//        echo '$srcs = '.print_r($srcs, true).'<br>';
+//        echo '$src_id = '.print_r($src_id, true).'<br>';
+//        echo '$src = '.print_r($src, true).'<br>';
+//        echo '$hrcs = '.print_r($hrcs, true).'<br>';
+//        echo '$hrc = '.print_r($hrc, true).'<br>';
+//        echo '$pos = '.print_r($pos, true).'<br>';
+//        echo '$pvs = '.print_r($pvs, true).'<br>';
+//        echo '$experiment = '.print_r($experiment, true).'<br>';
 
-        echo '$srcs = '.print_r($srcs, true).'<br>';
-        echo '$src_id = '.print_r($src_id, true).'<br>';
-        echo '$src = '.print_r($src, true).'<br>';
-        echo '$hrcs = '.print_r($hrcs, true).'<br>';
-        echo '$hrc = '.print_r($hrc, true).'<br>';
-        echo '$pos = '.print_r($pos, true).'<br>';
-        echo '$pvs = '.print_r($pvs, true).'<br>';
-
-//        $id_user = $_SESSION['id_user'];
-//            echo 'id_user='.$id_user.'<br>';
-//        $_SESSION['eval_id'] = 0;
-//        echo '<a href="testMOS.php">NEXT</a>';
+        if ($experiment) {
+            $pvs = $src;
+        }
 
         if (substr($pvs, strrpos($pvs, '.'))=='.mp4'){
+            echo '"'.$pvs.'"<br>';
             echo '<video autoplay muted>';
-            echo '    <source src="Data/'.$pvs.'" type="video/mp4" id="image">';
+            echo '    <source src="Data_experiment/'.$pvs.'" type="video/mp4" id="image">';
             echo '</video>';
         }else{
-            echo '<img src="Data/'.$pvs.'" alt="" id="image" width="50%">';
+//            echo '<img src="Data/'.$pvs.'" alt="" id="image" width="50%">';
+            echo '<img src="Data/'.$pvs.'" alt="" id="image">';
         }
 //        $_SESSION['pvs_start_time'] = microtime(true);
         ?>
@@ -63,12 +66,14 @@
 </body>
 </html>
 <script type="text/javascript">
+    // For video experiment
     $(window).load(function() {
         window.setTimeout(function(){
             window.location.href = "testMOS.php";
         }, 10000);
     });
 
+    // For TUFIQoE PIQ
     // document.getElementById('image').onload = () => {
     //     window.setTimeout(function(){
     //         window.location.href = "testMOS.php";
