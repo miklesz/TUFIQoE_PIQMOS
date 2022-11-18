@@ -14,31 +14,16 @@ if( !$id_user || !$lan){
 }
 else {
 	echo 'All data correct<br><br>';
-//	exit;
-	// JN: The code below looks like some bad practices
 	session_start();
-	$_SESSION = array();
-	session_destroy();
 
-	session_start();
+    $experiment = $_SESSION['experiment'];
+    $group = $_SESSION['group'];
+    echo '$experiment = '.print_r($experiment, true).'<br>';
+    echo '$group = '.print_r($group, true).'<br>';
+//    exit;
 
 	$_SESSION['id_user'] = $id_user;
 
-//			echo '$dbhandle = connectToDB();<br>';
-//			$dbhandle = connectToDB();
-//			echo $dbhandle;
-
-//			$resultS = mysql_query("SELECT * FROM `USER` WHERE NUMBER = ('$id_user')");
-//			if(mysql_num_rows($resultS) == 0)
-//			{
-//				// Add user ID to database
-//				$resultInsert = mysql_query("INSERT INTO `USER`(`NUMBER`) VALUES (('$id_user'))");
-//				if(!$resultInsert) {
-//					echo "Error when adding the user. Come back to the previous page and try again";
-//					header( "Location: ../PIQMOS/index.php" );
-//					exit;
-//				}
-//			}
 	if (file_exists('results/'.$id_user.'.csv') or file_exists('results/'.$id_user.'_screen.csv')) {
 		echo 'Warning: User already exists!<br>';
         header( "Location: testCut.php?com=User already exists" );
@@ -57,12 +42,16 @@ else {
     echo '<br><br>';
     $_SESSION['order_id'] = $order_id;
 
-    $orders = file('config/orders.csv');
+    if ($experiment) {
+        $orders = file('config/orders_experiment_'.$group.'.csv');
+    } else {
+        $orders = file('config/orders.csv');
+    }
 
     $srcs = explode(',', substr($orders[0], 0, -1));
-    echo 'substr($orders[0], 0, -1) = "';
-    print_r(substr($orders[0], 0, -1));
-    echo '"<br><br>';
+//    echo 'substr($orders[0], 0, -1) = "';
+//    print_r(substr($orders[0], 0, -1));
+//    echo '"<br><br>';
 
     $order = explode(',', substr($orders[$order_id+1], 0, -1));
     echo 'substr($orders[$order_id+1], 0, -1) = "';
@@ -72,19 +61,25 @@ else {
     array_shift($srcs);
     array_shift($order);
     $hrcs = array_combine($srcs, $order);
-    echo '$hrcs = ';
-    print_r($hrcs);
-    echo '<br><br>';
+//    echo '$hrcs = ';
+//    print_r($hrcs);
+//    echo '<br><br>';
     $_SESSION['hrcs'] = $hrcs;
 
     shuffle($srcs);
-    echo '$srcs = ';
-    print_r($srcs);
-    echo '<br><br>';
+//    echo '$srcs = ';
+//    print_r($srcs);
+//    echo '<br><br>';
     $_SESSION['srcs'] = $srcs;
 
+//    header( "Location: testStart.php" );
+
     $_SESSION['question'] = null;
+    $_SESSION['submitted_answer'] = null;
     $_SESSION['real_answer'] = null;
+    $_SESSION['answer_duration'] = null;
+
+//    exit;
 //    $_SESSION['ask_question'] = true;
 
 //    $src_table = file('config/src.csv');
