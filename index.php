@@ -47,20 +47,30 @@
                 <div class="login">
                     <h1 style="	margin-bottom: 5px; margin-top: 5px;"  id="loginCom">Login to the test system</h1>
                     <?php
-                    echo 'Debug:<br>';
-                    echo 'PROLIFIC_PID = '.$_GET['PROLIFIC_PID'].'<br>';
-                    echo 'STUDY_ID = '.$_GET['STUDY_ID'].'<br>';
-                    echo 'SESSION_ID = '.$_GET['SESSION_ID'].'<br>';
+                        session_start();
+                        $_SESSION = array();
+                        session_destroy();
+                        session_start();
+                        $_SESSION['experiment'] = $_GET['experiment'];
+                        $_SESSION['group'] = $_GET['group'];
+//                        echo 'Debug:<br>';
+//                        echo 'PROLIFIC_PID = '.$_GET['PROLIFIC_PID'].'<br>';
+//                        echo 'STUDY_ID = '.$_GET['STUDY_ID'].'<br>';
+//                        echo 'SESSION_ID = '.$_GET['SESSION_ID'].'<br>';
+
+//                        http://pbz.kt.agh.edu.pl/~testySubiektywne/PIQMOS/index.php?experiment=true&group=normal
+//                        http://pbz.kt.agh.edu.pl/~testySubiektywne/PIQMOS/index.php?experiment=true&group=repeat
                     ?>
                     <form method="post" action="text_conf.php">
                         <p>
                             <label for="inputPlaceHolder"></label>
-            <!--                <input type="number" name="id_user" value="ABC" placeholder="Id number" min="0" id="inputPlaceHolder">-->
-                            <input type="text" name="id_user" value="<?php echo $_GET['SESSION_ID'];?>" min="0" id="inputPlaceHolder">
+                            <input type="number" name="id_user" value="ABC" placeholder="Id number" min="0" id="inputPlaceHolder">
+<!--                            <input type="text" name="id_user" value="--><?php //echo $_GET['SESSION_ID'];?><!--" min="0" id="inputPlaceHolder">-->
                         </p>
-                        <label for="soflow"></label><select name="countries" class="countries" id="soflow" onchange="onLanguageChange()">
+                        <label for="soflow"></label>
+                        <select name="countries" class="countries" id="soflow" onchange="onLanguageChange()" hidden>
                             <option value="eng" data-title="English" name="language">English</option>
-                            <!--	<option value="pl"  data-title="Polski" name="language">Polski</option>-->
+<!--                            <option value="pl"  data-title="Polski" name="language">Polski</option>-->
                         </select>
                         <p class="submit"><input type="submit" name="commit" value="Login"></p>
                     </form>
@@ -68,7 +78,7 @@
             </section>
         </td>
         <td style="width:33%; vertical-align: top; text-align: right;">
-            <img src="https://uploads-ssl.webflow.com/5ed38b28a553da56c8e4bb1e/62a75e1ee5dc8339085b165e_norwayGrants.png">
+            <img src="https://uploads-ssl.webflow.com/5ed38b28a553da56c8e4bb1e/62a75e1ee5dc8339085b165e_norwayGrants.png" alt="">
         </td>
     </tr>
 </table>
