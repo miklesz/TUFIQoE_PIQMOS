@@ -31,10 +31,13 @@
     </div>
 </section>	
 <?php
-$_SESSION['src_id'] = 0;
-if(!isset($_SESSION['pageIndex'])) {
-    $_SESSION['pageIndex'] = 1;
-} 
+    $_SESSION['src_id'] = 0;
+    if(!isset($_SESSION['pageIndex'])) {
+        $_SESSION['pageIndex'] = 1;
+    }
+
+//    $experiment = $_SESSION['experiment'];
+//    echo '$experiment = '.print_r($experiment, true).'<br>';
 ?>
 </body>
 </html>
