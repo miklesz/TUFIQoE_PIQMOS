@@ -51,7 +51,8 @@
                         $_SESSION = array();
                         session_destroy();
                         session_start();
-                        $_SESSION['experiment'] = $_GET['experiment'];
+//                        $_SESSION['experiment'] = $_GET['experiment'];
+                        $_SESSION['experiment'] = true;
                         $_SESSION['group'] = $_GET['group'];
 //                        echo 'Debug:<br>';
 //                        echo 'PROLIFIC_PID = '.$_GET['PROLIFIC_PID'].'<br>';
