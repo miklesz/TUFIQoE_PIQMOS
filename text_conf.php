@@ -17,7 +17,15 @@ else {
 	session_start();
 
     $experiment = $_SESSION['experiment'];
+
+    if($id_user % 2 == 0){
+        $_SESSION['group'] = 'normal';
+    }
+    else{
+        $_SESSION['group'] = 'repeat';
+    }
     $group = $_SESSION['group'];
+
     echo '$experiment = '.print_r($experiment, true).'<br>';
     echo '$group = '.print_r($group, true).'<br>';
 //    exit;
@@ -37,6 +45,7 @@ else {
 
     $order_id = file('config/max_order.txt')[0];
     file_put_contents('config/max_order.txt',$order_id+1);
+//    file_put_contents('config/max_order.txt','2');
     echo '$order_id = ';
     print_r($order_id);
     echo '<br><br>';
