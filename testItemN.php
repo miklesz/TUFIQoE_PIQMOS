@@ -51,7 +51,7 @@
         }
 
         if (substr($pvs, strrpos($pvs, '.'))=='.mp4'){
-            echo '"'.$pvs.'"<br>';
+//            echo '"'.$pvs.'"<br>';
             echo '<video autoplay muted>';
             echo '    <source src="Data_experiment/'.$pvs.'" type="video/mp4" id="image">';
             echo '</video>';
