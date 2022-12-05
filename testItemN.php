@@ -35,7 +35,7 @@
     $pvs = substr($src, 0, $pos).'_'.$hrc.substr($src, $pos);
     $experiment = $_SESSION['experiment'];
     $group = $_SESSION['group'];
-    $pvs = $src;
+//    $pvs = $src;
 //    print_r($srcs);
 //    echo '<br>';
 //    print_r($src_id);
@@ -71,6 +71,7 @@
 //        echo '$pos = '.print_r($pos, true).'<br>';
 //        echo '$pvs = '.print_r($pvs, true).'<br>';
 //        echo '$experiment = '.print_r($experiment, true).'<br>';
+        echo '<img src="Data/'.$pvs.'" alt="" id="image">';
 
 //        if ($experiment) {
 //            $pvs = $src;
@@ -82,9 +83,9 @@
 //        }else{
 //            echo '<a href="testMOS.php">';
 //            echo '<video autoplay muted width="150%">';
-            echo '<video autoplay muted>';
-            echo '    <source src="Data_experiment/'.$pvs.'" type="video/mp4" id="image">';
-            echo '</video>';
+//            echo '<video autoplay muted>';
+//            echo '    <source src="Data_experiment/'.$pvs.'" type="video/mp4" id="image">';
+//            echo '</video>';
 //            echo '</a>';
 //        }
 //        $_SESSION['pvs_start_time'] = microtime(true);
@@ -98,7 +99,7 @@
     $(window).load(function() {
         window.setTimeout(function(){
             window.location.href = "testMOS.php";
-        }, 10000);
+        }, 3000);
     });
 
     // For TUFIQoE PIQ
