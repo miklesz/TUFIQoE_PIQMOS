@@ -19,8 +19,14 @@ session_start();
     <div class="login">
 <!--        <h3 id="com" style="margin-bottom: 5px;">The test is interrupted</h3>-->
         <h3 id="com" style="margin-bottom: 5px;"><?php echo $_GET['com'] ?></h3>
-        <form method="post" action="indexReturn.php">
-            <p class="submit"><input type="submit" name="commit" value="Return"></p>
+<!--        <form method="post" action="indexReturn.php">-->
+        <form method="post" action="https://app.prolific.co/submissions/complete?cc=CG7KK0BB">
+            <?php
+            if ($_GET['com'] == 'The test is done') {
+                header( "Location: https://app.prolific.co/submissions/complete?cc=CG7KK0BB" );
+                echo '<p class="submit"><input type="submit" name="commit" value="Return"></p>';
+            }
+            ?>
         </form>
     </div>
 </section>
