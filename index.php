@@ -55,9 +55,9 @@
                         $_SESSION['experiment'] = false;
                         $_SESSION['group'] = $_GET['group'];
 //                        echo 'Debug:<br>';
-//                        echo 'PROLIFIC_PID = '.$_GET['PROLIFIC_PID'].'<br>';
-//                        echo 'STUDY_ID = '.$_GET['STUDY_ID'].'<br>';
-//                        echo 'SESSION_ID = '.$_GET['SESSION_ID'].'<br>';
+                        echo 'PROLIFIC_PID = '.$_GET['PROLIFIC_PID'].'<br>';
+                        echo 'STUDY_ID = '.$_GET['STUDY_ID'].'<br>';
+                        echo 'SESSION_ID = '.$_GET['SESSION_ID'].'<br>';
 
 //                        http://pbz.kt.agh.edu.pl/~testySubiektywne/PIQMOS/index.php?experiment=true&group=normal
 //                        http://pbz.kt.agh.edu.pl/~testySubiektywne/PIQMOS/index.php?experiment=true&group=repeat
