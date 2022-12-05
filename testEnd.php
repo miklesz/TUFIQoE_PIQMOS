@@ -30,7 +30,8 @@ session_start();
 <section class="container">
     <div class="login">
         <h3 id="com" style="margin-bottom: 5px;">The test is done</h3>
-        <form method="post" action="indexReturn.php">
+<!--        <form method="post" action="indexReturn.php">-->
+        <form method="post" action="https://app.prolific.co/submissions/complete?cc=CG7KK0BB">
             <p class="submit"><input type="submit" name="commit" value="Return"></p>
         </form>
     </div>
