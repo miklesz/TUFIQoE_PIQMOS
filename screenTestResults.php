@@ -6,12 +6,6 @@ ini_set('display_startup_errors', '1');
 
 session_start();
 
-// DEBUG: uncomment to test this separately
-//if(!isset($_SESSION['id_user']))
-//  $_SESSION['id_user'] = 100;
-
-
-
 function log_debug($txt) {
   // Uncomment for debugging
   //echo "$txt\n";
@@ -23,51 +17,53 @@ function normalize_cheat_score($c) {
   return round( 100 * ( -0.5 * ( tanh($normScore - 3) - 1 ) ) );
 }
 
-if(isset($_SESSION['id_user'])) {
+if(isset($_SESSION['session_id'])) {
+    $prolific_pid = $_SESSION['prolific_pid'];
+    $study_id = $_SESSION['study_id'];
+    $session_id = $_SESSION['session_id'];
+    $screen = $_REQUEST['screen'];
+    $browser = $_REQUEST['browser'];
+    $smallest = $_REQUEST['smallestNumber'];
+    $highest = $_REQUEST['highestNumber'];
+    $blackStars = $_REQUEST['blackStars'];
+    $focusTime = $_REQUEST['focusTime'];
+    $clickNo = $_REQUEST['clickNo'];
+    $clickCounter = $_REQUEST['clickCounter'];
 
-  $id_user = $_SESSION['id_user'];
-  $screen = $_REQUEST['screen'];
-  $browser = $_REQUEST['browser'];
-  $smallest = $_REQUEST['smallestNumber'];
-  $highest = $_REQUEST['highestNumber'];
-  $blackStars = $_REQUEST['blackStars'];
-  $focusTime = $_REQUEST['focusTime'];
-  $clickNo = $_REQUEST['clickNo'];
-  $clickCounter = $_REQUEST['clickCounter'];
+    $minStar = min($blackStars);
+    $maxStar = max($blackStars);
+    $numStars = count($blackStars);
 
-  $minStar = min($blackStars);
-  $maxStar = max($blackStars);
-  $numStars = count($blackStars);
+    //
+    $numberWhites = array(-1, 247, 248, 249, 250, 251, 253, 254, 255);
+    $startBlacks = array(-1, 41, 20, 16, 13,  9,  7,  5,  0);
 
-  //
-  $numberWhites = array(-1, 247, 248, 249, 250, 251, 253, 254, 255);
-  $startBlacks = array(-1, 41, 20, 16, 13,  9,  7,  5,  0);
-
-  // Check for user cheating, See;
-  // https://github.com/St1c/screentest#reliability-checks
-  $cheat = 0;
+    // Check for user cheating, See;
+    // https://github.com/St1c/screentest#reliability-checks
+    $cheat = 0;
 
 
-  // Check black stars
-  if($numStars > 0) {
-    if($maxStar - $minStar != $numStars - 1) {
-      log_debug("Numbers in stars array are not consecutive or 0");
-      $cheat += 1;
+    // Check black stars
+    if($numStars > 0) {
+        if($maxStar - $minStar != $numStars - 1) {
+            log_debug("Numbers in stars array are not consecutive or 0");
+            $cheat += 1;
+        }
+        if($minStar != 1) {
+            log_debug("Low visible star selected, but not selected more visible one");
+            $cheat += 2;
+        }
+        if($maxStar == 8) {
+            log_debug("Invisible star selected");
+            $cheat += 3;
+        }
     }
-    if($minStar != 1) {
-      log_debug("Low visible star selected, but not selected more visible one");
-      $cheat += 2;
+
+    else {
+        // put some values
+        $minStar = 0;
+        $maxStar = 0;
     }
-    if($maxStar == 8) {
-      log_debug("Invisible star selected");
-      $cheat += 3;
-    }
-  }
-  else {
-    // put some values
-    $minStar = 0;
-    $maxStar = 0;
-  }
 
   // Smallest vs highest
   if($smallest != "none") {
@@ -124,7 +120,7 @@ if(isset($_SESSION['id_user'])) {
   $test_date = date('Y-m-d H:i:s');
 
   // We have all the data: insert in database
-  echo 'id_user='.$id_user.'<br>';
+  echo 'session_id='.$session_id.'<br>';
   echo 'test_date='.$test_date.'<br>';
   echo 'max_white='.$max_white.'<br>';
   echo 'min_black='.$min_black.'<br>';
@@ -132,28 +128,15 @@ if(isset($_SESSION['id_user'])) {
   echo 'screen='.$screen.'<br>';
   echo 'browser='.$browser.'<br>';
 
-//  file_put_contents('results/'.$id_user.'.csv', 'id_user,'.$id_user.PHP_EOL, FILE_APPEND | LOCK_EX);
-//  file_put_contents('results/'.$id_user.'.csv', 'test_date,'.$test_date.PHP_EOL, FILE_APPEND | LOCK_EX);
-//  file_put_contents('results/'.$id_user.'.csv', 'max_white,'.$max_white.PHP_EOL, FILE_APPEND | LOCK_EX);
-//  file_put_contents('results/'.$id_user.'.csv', 'min_black,'.$min_black.PHP_EOL, FILE_APPEND | LOCK_EX);
-//  file_put_contents('results/'.$id_user.'.csv', 'reliability,'.$reliability.PHP_EOL, FILE_APPEND | LOCK_EX);
-//  file_put_contents('results/'.$id_user.'.csv', 'screen,'.$screen.PHP_EOL, FILE_APPEND | LOCK_EX);
-//  file_put_contents('results/'.$id_user.'.csv', 'browser,'.$browser.PHP_EOL, FILE_APPEND | LOCK_EX);
-
   file_put_contents(
-      'results/'.$id_user.'_screen.csv',
-      'id_user,test_date,max_white,min_black,reliability,screen,browser'.PHP_EOL
+      'results/'.$session_id.'_screen.csv',
+      'prolific_pid,study_id,session_id,test_date,max_white,min_black,reliability,screen,browser'.PHP_EOL
   );
   file_put_contents(
-      'results/'.$id_user.'_screen.csv',
-      $id_user.','.$test_date.','.$max_white.','.$min_black.','.$reliability.','.$screen.','.$browser.PHP_EOL,
+      'results/'.$session_id.'_screen.csv',
+      $prolific_pid.','.$study_id.','.$session_id.','.$test_date.','.$max_white.','.$min_black.','.$reliability.','.$screen.','.$browser.PHP_EOL,
       FILE_APPEND | LOCK_EX
   );
-
-
-//  $dbhandle = connectToDB();
-//  $query = mysql_query("INSERT INTO `SCREEN`(`ID_USER`, `TEST_DATE`, `MAX_WHITE`, `MIN_BLACK`, `RELIABILITY`, `SCREEN`, `BROWSER` ) VALUES ((SELECT ID FROM `USER` WHERE NUMBER = ('$id_user')), NOW(),('$max_white'),('$min_black'),('$reliability'),('$screen'),('$browser'))");
-
 
   header( "Location: testDescription.php" );
 
