@@ -19,6 +19,7 @@
 	  <section class="container">
 		<div class="login">
 			<?php
+                header( "Location: screenTest.php" );
                 session_start();
     //            $pvs = $_SESSION['pvs'];
     //            print_r($pvs);
