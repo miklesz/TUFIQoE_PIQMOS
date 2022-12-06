@@ -47,31 +47,27 @@
                 <div class="login">
                     <h1 style="	margin-bottom: 5px; margin-top: 5px;"  id="loginCom">Login to the test system</h1>
                     <?php
-                        session_start();
-                        $_SESSION = array();
-                        session_destroy();
-                        session_start();
-//                        $_SESSION['experiment'] = $_GET['experiment'];
-                        $_SESSION['experiment'] = false;
-                        $_SESSION['group'] = $_GET['group'];
-//                        echo 'Debug:<br>';
-                        echo 'PROLIFIC_PID = '.$_GET['PROLIFIC_PID'].'<br>';
-                        echo 'STUDY_ID = '.$_GET['STUDY_ID'].'<br>';
-                        echo 'SESSION_ID = '.$_GET['SESSION_ID'].'<br>';
-
-//                        http://pbz.kt.agh.edu.pl/~testySubiektywne/PIQMOS/index.php?experiment=true&group=normal
-//                        http://pbz.kt.agh.edu.pl/~testySubiektywne/PIQMOS/index.php?experiment=true&group=repeat
+                    session_start();
+                    $_SESSION = array();
+                    session_destroy();
+                    session_start();
+                    $_SESSION['experiment'] = false;
+                    $_SESSION['group'] = $_GET['group'];
+                    echo '<p>Your PROLIFIC_PID is:</p>';
+                    echo '<p style="color:blue">'.$_GET['PROLIFIC_PID'].'</p>';
+                    echo '<p>Your STUDY_ID is:</p>';
+                    echo '<p style="color:blue">'.$_GET['STUDY_ID'].'</p>';
+                    echo '<p>Your SESSION_ID is:</p>';
+                    echo '<p style="color:blue">'.$_GET['SESSION_ID'].'</p>';
+                    echo '<p style="color:red">Please copy and save this information in case of any problems.</p>';
+                    $_SESSION['prolific_pid'] = $_GET['PROLIFIC_PID'];
+                    $_SESSION['study_id'] = $_GET['STUDY_ID'];
+                    $_SESSION['session_id'] = $_GET['SESSION_ID'];
                     ?>
                     <form method="post" action="text_conf.php">
-                        <p>
-                            <label for="inputPlaceHolder"></label>
-                            <input type="number" name="id_user" value="ABC" placeholder="Id number" min="0" id="inputPlaceHolder">
-<!--                            <input type="text" name="id_user" value="--><?php //echo $_GET['SESSION_ID'];?><!--" min="0" id="inputPlaceHolder">-->
-                        </p>
-                        <label for="soflow"></label>
+<!--                        <input type="text" name="id_user" value="--><?php //echo $_GET['SESSION_ID'];?><!--" min="0" id="inputPlaceHolder" hidden>-->
                         <select name="countries" class="countries" id="soflow" onchange="onLanguageChange()" hidden>
                             <option value="eng" data-title="English" name="language">English</option>
-<!--                            <option value="pl"  data-title="Polski" name="language">Polski</option>-->
                         </select>
                         <p class="submit"><input type="submit" name="commit" value="Login"></p>
                     </form>
