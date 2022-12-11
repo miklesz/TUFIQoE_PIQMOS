@@ -81,8 +81,8 @@ $distance = '';
 $pvs_file = file('config/pvs_stats_old.csv');
 foreach ($pvs_file as $pvs_line) {
     $pvs_elements = explode(",", $pvs_line);
-    echo substr($pvs_elements[0], 0, -4).'_'.$pvs_elements[1].'.jpg'.'<br>';
-    echo $pvs.'<br>';
+//    echo substr($pvs_elements[0], 0, -4).'_'.$pvs_elements[1].'.jpg'.'<br>';
+//    echo $pvs.'<br>';
     if ($pvs_elements[0] == $src) {
         $desired_metric = $pvs_elements[2];
         $achieved_metric = $pvs_elements[3];
@@ -103,8 +103,6 @@ if ($ask_question) {
     $order_id = $_SESSION['order_id'];
     date_default_timezone_set('Europe/Warsaw');
     $timestamp = date('Y-m-d H:i:s');
-    $hrcs = $_SESSION['hrcs'];
-    $hrc = $hrcs[$src];
     $submitted_mos = $_SESSION['submitted_mos'];
     $mos_duration = $_SESSION['mos_duration'];
     $submitted_answer = $_SESSION['submitted_answer'];
