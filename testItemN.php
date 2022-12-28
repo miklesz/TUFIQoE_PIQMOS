@@ -20,6 +20,7 @@
     });
 </script>
 <body>
+
 <?php
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
@@ -101,6 +102,18 @@
             window.location.href = "testMOS.php";
         }, 3000);
     });
+
+    // // element which needs to enter full-screen mode
+    // const element = document.querySelector("#con");
+    //
+    // // make the element go to full-screen mode
+    // element.requestFullscreen()
+    //     .then(function() {
+    //         // element has entered fullscreen mode successfully
+    //     })
+    //     .catch(function(error) {
+    //         // element could not enter fullscreen mode
+    //     });
 
     // For TUFIQoE PIQ
     // document.getElementById('image').onload = () => {
