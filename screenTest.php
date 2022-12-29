@@ -41,7 +41,9 @@
 			<form class="form-horizontal" role="form" action="screenTestResults.php" method="post" id="frm-screenTestForm">
 
 				<blockquote>
-					<p> <strong>!!!Please press the F11 key or turn on full screen mode!!! </strong> </p>
+<!--					<p> <strong>!!!Please press the F11 key or turn on full screen mode!!! </strong> </p>-->
+                    <p> <strong>!!!Please turn on immersive full screen mode!!! </strong> </p>
+                    <p> <strong>!!!(Windows: press the F11 key; macOS: press the 🌐F, then ⇧⌘F key)!!! </strong> </p>
 				</blockquote>
 				<blockquote>
 					<p>Please select the minimum and maximum<strong> visible number</strong> in the white box below.</p>
