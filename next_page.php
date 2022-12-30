@@ -78,18 +78,28 @@ $desired_metric = '';
 $achieved_metric = '';
 $distance_index = '';
 $distance = '';
-$pvs_file = file('config/pvs_stats_old.csv');
+$pvs_file = file('config/pvs_stats.csv');
+echo 'Looking for PVS entry<br>';
 foreach ($pvs_file as $pvs_line) {
     $pvs_elements = explode(",", $pvs_line);
 //    echo substr($pvs_elements[0], 0, -4).'_'.$pvs_elements[1].'.jpg'.'<br>';
 //    echo $pvs.'<br>';
-    if ($pvs_elements[0] == $src) {
+
+    $comp_pos = strrpos($pvs_elements[0], '.');
+    $comp_pvs = substr($pvs_elements[0], 0, $comp_pos).'_'.$pvs_elements[1].substr($pvs_elements[0], $comp_pos);
+//    if ($pvs_elements[0] == $src) {
+    if ($comp_pvs == $pvs) {
+        echo 'Found PVS entry<br>';
+        echo '$comp_pvs = '.$comp_pvs.'<br>';
+        print_r($pvs_elements);
+        echo '<br>';
         $desired_metric = $pvs_elements[2];
         $achieved_metric = $pvs_elements[3];
         $distance_index = $pvs_elements[4];
         $distance = $pvs_elements[5];
     }
 }
+echo 'Finished looking for PVS entry<br>';
 
 //Either come back with question or store to file
 if ($ask_question) {
@@ -136,10 +146,10 @@ if ($ask_question) {
     $_SESSION['src_id'] += 1;
     $src_id = $_SESSION['src_id'];
     if ($src_id == count($srcs)) {
-//        header("Location: testCut.php?com=The test is done");
-        echo '<a href="testCut.php?com=The test is done">testCut.php?com=The test is done</a>';
+        header("Location: testCut.php?com=The test is done");
+//        echo '<a href="testCut.php?com=The test is done">testCut.php?com=The test is done</a>';
     } else{
-//        header("Location: testItemN.php");
-        echo '<a href="testItemN.php">testItemN.php</a>';
+        header("Location: testItemN.php");
+//        echo '<a href="testItemN.php">testItemN.php</a>';
     }
 }
