@@ -1,24 +1,24 @@
 src,question,real_answer
-People_077_v.jpg,Did the picture show a woman?,true
-People_235_h.jpg,Did the photo show architecture?,false
-People_117_h.jpg,Did the photo show a street?,true
-People_074_v.jpg,Did the photo show animal?,false
-People_175_h.jpg,Did the photo show a skate?,true
-People_222_h.jpg,Did the photo show a garlic?,false
-People_079_h.jpg,Did the photo show sickle?,true
-People_242_v.jpg,Did the photo show a room?,false
-People_105_h.jpg,Did the photo show architecture?,true
-People_206_h.jpg,Did the photo show a gramophone?,false
-People_199_v.jpg,Did the photo show a surgery?,true
-People_045_h.jpg,Did the photo show a bike?,false
-People_201_v.jpg,Did the photo show railway?,true
-People_158_h.jpg,Did the photo show a sunset?,false
-People_207_v.jpg,Did the photo show healthcare?,true
 People_040_h.jpg,Did the photo show a car?,false
-People_167_h.jpg,Did the photo show an artist?,true
+People_045_h.jpg,Did the photo show a bike?,false
 People_067_h.jpg,Did the photo show a dog?,false
 People_069_h.jpg,Did the photo show a market?,true
+People_074_v.jpg,Did the photo show animal?,false
+People_077_v.jpg,Did the picture show a woman?,true
+People_079_h.jpg,Did the photo show sickle?,true
+People_105_h.jpg,Did the photo show architecture?,true
+People_117_h.jpg,Did the photo show a street?,true
+People_158_h.jpg,Did the photo show a sunset?,false
+People_167_h.jpg,Did the photo show an artist?,true
+People_175_h.jpg,Did the photo show a skate?,true
+People_199_v.jpg,Did the photo show a surgery?,true
+People_201_v.jpg,Did the photo show railway?,true
+People_206_h.jpg,Did the photo show a gramophone?,false
+People_207_v.jpg,Did the photo show healthcare?,true
 People_208_h.jpg,Did the photo show pollution?,false
+People_222_h.jpg,Did the photo show a garlic?,false
+People_235_h.jpg,Did the photo show architecture?,false
+People_242_v.jpg,Did the photo show a room?,false
 Animals_146_h.jpg,Fejkowe pytanie do Animals_146_h.jpg,true
 Animals_202_h.jpg,Fejkowe pytanie do Animals_202_h.jpg,false
 Landscapes_001_h.jpg,Fejkowe pytanie do Landscapes_001_h.jpg,true
